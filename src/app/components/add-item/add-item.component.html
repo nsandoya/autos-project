@@ -1,0 +1,51 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-plus-lg"></i> Agregar</button>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nuevo registro</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Creamos un nuevo formGroup a partir del form que creamos (constructor, add-item.component) -->
+        <form [formGroup]="newItemForm" (ngSubmit)="onSubmit()" class="text-start">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label text-start">Nombre</label>
+            <input type="text" class="form-control" id="recipient-name"
+            formControlName="name"
+            [ngClass]="{'is-invalid': newItemForm.get('name')?.invalid && newItemForm.get('name')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+            <div class="alert alert-danger" *ngIf="newItemForm.get('name')?.invalid && newItemForm.get('name')?.touched">
+                Este campo es requerido. Debe tener entre 3 y 20 caractertes
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label text-start">Descripción</label>
+            <textarea class="form-control" id="message-text"
+            formControlName="detail"
+            [ngClass]="{'is-invalid': newItemForm.get('detail')?.invalid && newItemForm.get('detail')?.touched}"></textarea>
+            <div class="alert alert-danger" *ngIf="newItemForm.get('detail')?.invalid && newItemForm.get('detail')?.touched">
+                Este campo es requerido. Debe tener entre 10 y 50 caractertes
+            </div>
+          </div>
+            <div class="mb-3">
+                <label for="message-text" class="col-form-label text-start">Imagen (URL)</label>
+                <textarea class="form-control" id="message-text"
+                formControlName="image"
+                [ngClass]="{'is-invalid': newItemForm.get('image')?.invalid && newItemForm.get('image')?.touched}"></textarea>
+                <div class="alert alert-danger" *ngIf="newItemForm.get('image')?.invalid && newItemForm.get('image')?.touched">
+                    Este campo es requerido.
+                </div>
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+            <!-- Para que funcione, el submit siempre debe estar antes de cerrar la etiqueta <formArrayNameorm> -->
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
