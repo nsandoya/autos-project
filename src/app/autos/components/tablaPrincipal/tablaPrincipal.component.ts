@@ -14,7 +14,7 @@ import { SearchInputComponent } from '../search-input/search-input.component';
 // Existen eventos que ocurren durante (el ciclo de) la vida de un componente. En este caso, OnInit
 export class TablaPrincipalComponent implements OnInit {
   // Recibir info (listaGeneral) de un servicio (getCompleteList)
-  autos: ListaInterface[] | undefined
+  autos: ListaInterface[] | any
   filterList:ListaInterface[] | undefined
   showImg = true;
   //stars:any = ""
@@ -26,11 +26,13 @@ export class TablaPrincipalComponent implements OnInit {
     // acá nos estamos suscribiendo al observable, y se actualizará c/ vez que haya cambios
     this.listaService.getCompleteList().subscribe((autos)=>{
       this.autos = autos
+      console.log(this.autos.data)
+
     })
-    console.log(this.autos)
+    /* console.log(this.autos)
     this.listaService.getFilteredList().subscribe((autosFiltrados)=>{
       this.filterList = autosFiltrados
-    });
+    }); */
     
   }
   
@@ -46,13 +48,13 @@ export class TablaPrincipalComponent implements OnInit {
     return(stars) 
   }
 
-  deleteItem(id:any){
+ /*  deleteItem(id:any){
     this.listaService.deleteItem(id);
     this.listaService.getCompleteList().subscribe((autos)=>{
       this.filterList = autos
     })
     console.log(this.autos)
-  }
+  } */
   
   /* searchItem(){
     this.filterList = this.autos.filter((product) => product.name.toLowerCase().includes(this.searchCr.toLowerCase()))

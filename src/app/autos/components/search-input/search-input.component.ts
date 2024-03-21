@@ -9,7 +9,7 @@ import { ListaInterface } from '../../interfaces/lista-interface';
   styleUrl: './search-input.component.css'
 })
 export class SearchInputComponent {
-  autos: ListaInterface[] = [];
+  autos: ListaInterface[]| any = [];
   filterList: ListaInterface[] = []
   searchCr=''
 

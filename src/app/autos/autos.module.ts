@@ -26,9 +26,9 @@ import { AppRoutingModule } from '../app-routing.module';
     SearchInputComponent,
     AddItemComponent,
     AutosMainPageComponent,
-    AutosComponent,
     NuevoAutoComponent,
-    EditarAutoComponent
+    EditarAutoComponent,
+    AutosComponent,
   ],
   imports: [
     CommonModule,

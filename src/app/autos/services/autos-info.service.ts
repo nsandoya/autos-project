@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ListaInterface } from '../interfaces/lista-interface';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class AutosInfo {
-  autos : ListaInterface[] = [
+  /* autos : ListaInterface[] = [
     {
       id: 1,
       name: "Mazda X5",
@@ -29,19 +30,21 @@ export class AutosInfo {
       image: "https://files.porsche.com/filestore/image/multimedia/none/carrange-flyout-911/small/3cf76e8c-6694-11e9-80c4-005056bbdc38;sQ;twebp;c1696;gc/porsche-small.webp",
       stars: 5
     }
-  ];
+  ]; */
+  autos:ListaInterface[] | any = ""
+  
   filterList: ListaInterface[] = [];
 
   listaPrincipal = new BehaviorSubject(this.autos)
   filterListObservable = new BehaviorSubject(this.autos)
 
   getCompleteList(){
-    //return this.autos;
-    return this.listaPrincipal.asObservable()
+    return this.autos = this.http.get('https://epico.gob.ec/vehiculo/public/api/vehiculos/')
+    //return this.listaPrincipal.asObservable()
   }
 
-  getItemById(id:any): ListaInterface | undefined{  // Find retorna el primer resultado que encuentra (y cuando lo encuentra, detiene su recorrido por el arreglo). Como estamos filtrando por ID, está bien así
-    return this.autos.find((item)=>item.id == id)
+  getItemById(id:any): ListaInterface | any{  // Find retorna el primer resultado que encuentra (y cuando lo encuentra, detiene su recorrido por el arreglo). Como estamos filtrando por ID, está bien así
+    return this.autos.find((item:any)=>item.id == id)
   }
 
   addItem(item:ListaInterface):void{
@@ -51,7 +54,7 @@ export class AutosInfo {
   }
 
   deleteItem(itemID:any):void{
-    this.autos = this.autos.filter((item) => item.id !== itemID)
+    this.autos = this.autos.filter((item:any) => item.id !== itemID)
     this.listaPrincipal.next(this.autos)
   }
 
@@ -60,12 +63,12 @@ export class AutosInfo {
   }
   searchItem(searchCr:any){
     console.log("desde la fx", searchCr)
-    this.filterList = this.autos.filter((product) => product.
+    this.filterList = this.autos.filter((product:any) => product.
     name.toLowerCase().includes(searchCr.toLowerCase()))
     return this.filterListObservable.next(this.filterList) 
   }
 
   
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 }

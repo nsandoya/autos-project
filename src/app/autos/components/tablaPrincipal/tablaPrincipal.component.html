@@ -11,19 +11,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let auto of filterList">
-        <th scope="row">{{ auto.id }}</th>
-        <td>{{ auto.name }}</td>
-        <td *ngIf="showImg"><img src="{{ auto.image }}" alt="{{ auto.name }}" class="img-table"></td>
-        <!-- Con esto se genera una nueva ruta específica a cada item (en este caso, según su id) -->
-        <td *ngIf="auto.stars">
-            <i *ngFor="let star of generateStars(auto.stars)" class="bi bi-star-fill" style="color: #007bff;"></i>
+      <tr *ngFor="let auto of autos.data">
+        <th scope="row">{{ auto.codigo }}</th>
+        <td>{{ auto.modelo }}</td>
+        <td *ngIf="showImg"><img src="{{ auto.foto }}" alt="{{ auto.modelo }}" class="img-table"></td>
+        <td *ngIf="auto.calificacion">
+            <i *ngFor="let star of generateStars(auto.calificacion)" class="bi bi-star-fill" style="color: #007bff;"></i>
         </td>
         <td >
-          <a [routerLink]="['/autos/' + auto.id]"><button class="btn btn-outline-primary mx-2"><i class="bi bi-list"></i></button></a>
+          <a [routerLink]="['/autos/' + auto.codigo]"><button class="btn btn-outline-primary mx-2"><i class="bi bi-list"></i></button></a>
           <a ><button class="btn btn-primary mx-2"><i class="bi bi-pencil-square "></i></button></a>
           <a ><button class="btn btn-primary mx-2" (click)="toggleImg()"><i class="bi bi-app-indicator"></i></button></a>
-          <a ><button class="btn btn-danger mx-2" (click)="deleteItem(auto.id)"><i class="bi bi-x-lg"></i></button></a>
+          <!-- <a ><button class="btn btn-danger mx-2" (click)="deleteItem(auto.id)"><i class="bi bi-x-lg"></i></button></a> -->
         </td>
       </tr>
       
