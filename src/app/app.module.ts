@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AutosModule } from './autos/autos.module';
+import { RouterModule } from '@angular/router';
 /* import { NavbarComponent } from './components/navbar/navbar.component';
 import { TablaPrincipalComponent } from './components/tablaPrincipal/tablaPrincipal.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
@@ -17,10 +17,11 @@ import { AutosComponent } from './components/autos/autos.component';
 import { NuevoAutoComponent } from './components/nuevo-auto/nuevo-auto.component';
 import { EditarAutoComponent } from './components/editar-auto/editar-auto.component'; */
 /* import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; */
-
+import { AutosModule } from './autos/autos.module';
 
 @NgModule({
   declarations: [
+    AppComponent, // Sin esta declaración, Angular no detecta los componentes de otros módulos que implementemos en el módulo principal, ¡y básicamente no habrá app de todas formas!
     /* AppComponent,
     NavbarComponent,
     TablaPrincipalComponent,
@@ -34,11 +35,12 @@ import { EditarAutoComponent } from './components/editar-auto/editar-auto.compon
     EditarAutoComponent */
   ],
   imports: [
+    AutosModule,
     BrowserModule,
     FormsModule,
+    RouterModule,
     AppRoutingModule,
     ReactiveFormsModule, 
-    AutosModule
   ],
   providers: [],
   bootstrap: [AppComponent]

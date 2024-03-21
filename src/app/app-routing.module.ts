@@ -11,6 +11,12 @@ import { EditarAutoComponent } from './autos/components/editar-auto/editar-auto.
 const routes: Routes = [
   {
     path: 'autos',
+    redirectTo: 'autos/all',
+    pathMatch: 'full'
+    //component: AutosMainPageComponent
+  },
+  {
+    path: 'autos',
     component: AutosComponent,
     children: [
       { path: 'all', component: AutosMainPageComponent},
@@ -22,12 +28,7 @@ const routes: Routes = [
     path: 'autos/:id',
     component: AutoDetailPageComponent
   },
-  {
-    path: 'autos',
-    redirectTo: 'autos/all',
-    pathMatch: 'full'
-    //component: AutosMainPageComponent
-  },
+  
   {
     path: '**',
     component: ErrorPageComponent

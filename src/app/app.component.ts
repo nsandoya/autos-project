@@ -7,13 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  /* constructor(private modalService : NgbModal){
-
-  } */
   title = 'autos-project';
 
-  /* public open(modal:any):void{
-    this.modalService.open(modal);
-  } */
 }
 
