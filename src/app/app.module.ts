@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { AutosModule } from './autos/autos.module';
+/* import { NavbarComponent } from './components/navbar/navbar.component';
 import { TablaPrincipalComponent } from './components/tablaPrincipal/tablaPrincipal.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { AutoDetailPageComponent } from './components/auto-detail-page/auto-detail-page.component';
@@ -14,13 +15,13 @@ import { AutosMainPageComponent } from './components/autos-main-page/autos-main-
 import { RouterModule } from '@angular/router';
 import { AutosComponent } from './components/autos/autos.component';
 import { NuevoAutoComponent } from './components/nuevo-auto/nuevo-auto.component';
-import { EditarAutoComponent } from './components/editar-auto/editar-auto.component';
+import { EditarAutoComponent } from './components/editar-auto/editar-auto.component'; */
 /* import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; */
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+    /* AppComponent,
     NavbarComponent,
     TablaPrincipalComponent,
     ErrorPageComponent,
@@ -30,13 +31,14 @@ import { EditarAutoComponent } from './components/editar-auto/editar-auto.compon
     AutosMainPageComponent,
     AutosComponent,
     NuevoAutoComponent,
-    EditarAutoComponent
+    EditarAutoComponent */
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    AutosModule
   ],
   providers: [],
   bootstrap: [AppComponent]
