@@ -17,6 +17,7 @@ export class TablaPrincipalComponent implements OnInit {
   autos: ListaInterface[] | undefined
   filterList:ListaInterface[] | undefined
   showImg = true;
+  //stars:any = ""
   // Lo ponemos como 'private' porque así podremos acceder al servicio solo desde nuestro componente
   constructor(private listaService: AutosInfo){}
 
@@ -35,6 +36,14 @@ export class TablaPrincipalComponent implements OnInit {
   
   toggleImg(){
     this.showImg = !this.showImg
+  }
+
+  generateStars(number:number){
+    let stars = [];
+    for(let i=1; i<=number; i++){
+      stars.push(i)
+    }
+    return(stars) 
   }
 
   deleteItem(id:any){

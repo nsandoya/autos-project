@@ -13,18 +13,21 @@ export class AutosInfo {
       name: "Mazda X5",
       detail: "lorem ipsum",
       image: "https://www.grupolader.com/hubfs/MAZDA/Modelos/CX-5/cx5-sport-mt.png",
+      stars: 3
     },
     {
       id: 2,
       name: "Aston Martin",
       detail: "lorem ipsum",
       image: "https://www.amalgamcollection.com/cdn/shop/files/DSCF8487_grande.jpg?v=1705422111",
+      stars: 5
     },
     {
       id: 3,
       name: "Porsche AG",
       detail: "lorem ipsum",
       image: "https://files.porsche.com/filestore/image/multimedia/none/carrange-flyout-911/small/3cf76e8c-6694-11e9-80c4-005056bbdc38;sQ;twebp;c1696;gc/porsche-small.webp",
+      stars: 5
     }
   ];
   filterList: ListaInterface[] = [];
