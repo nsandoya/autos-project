@@ -19,7 +19,7 @@ export class TablaPrincipalComponent /* implements OnInit */ {
   showImg = true;
 
   autoEditar:string | any 
-  autoEditarContent:ListaInterface | undefined
+  autoEditarContent:any
   //stars:any = ""
   // Lo ponemos como 'private' porque así podremos acceder al servicio solo desde nuestro componente
   constructor(private listaService: AutosInfo){
@@ -76,9 +76,19 @@ export class TablaPrincipalComponent /* implements OnInit */ {
     })
   }
 
+  carToDelete(id:string){
+    this.autoEditar = id
+    console.log("id obtenida", id)
+    /* this.listaService.getCompleteList(id).subscribe((auto)=>{
+      this.autoEditarContent = auto
+      console.log("id a borrar obtenida", this.autoEditarContent)
+    }) */
+  }
   deleteCar(id:string){
-    console.log("id a borrar", id)
-    this.listaService.deleteItem(id)/* .subscribe((respuesta)=>{
+    console.log("id a borrar", this.autoEditar)
+    this.listaService.deleteItem(id)
+    //this.listaService.refreshList()
+    /* .subscribe((respuesta)=>{
       if(respuesta.mensaje=="Vehiculo eliminado con exito") console.log("borrado!")
     }) */
   }

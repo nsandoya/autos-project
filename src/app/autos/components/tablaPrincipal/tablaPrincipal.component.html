@@ -14,6 +14,7 @@
     <tbody>
       <tr *ngFor="let auto of autos">
         <th scope="row">{{ auto.codigo }}</th>
+        <td>{{ auto.marca }}</td>
         <td>{{ auto.modelo }}</td>
         <td *ngIf="showImg"><img src="{{ auto.foto }}" alt="{{ auto.modelo }}" class="img-table"></td>
         <td>{{ auto.precio | currency }}</td>
@@ -26,9 +27,10 @@
           <app-editar-auto></app-editar-auto>
           <!-- <a ><button class="btn btn-primary mx-2"><i class="bi bi-pencil-square "></i></button></a> -->
           <a ><button class="btn btn-primary mx-2" (click)="toggleImg()"><i class="bi bi-app-indicator" ></i></button></a>
-          <a ><button class="btn btn-danger mx-2"><i class="bi bi-x-lg" data-bs-toggle="modal" data-bs-target="#deleteModal"></i></button></a>
 
-            <!--Delete Modal -->
+          <a ><button class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="carToDelete(auto.codigo)"><i class="bi bi-x-lg" ></i></button></a>
+
+           <!--Delete Modal -->
           <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -37,16 +39,17 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  ¿Estás seguro de eliminar el {{auto.marca}} {{auto.modelo}}?
+                  ¿Estás seguro de eliminar el auto?
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                  <button type="button" class="btn btn-danger" (click)="deleteCar(auto.codigo)" >Eliminar</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteCar(autoEditar)" >Eliminar</button>
                 </div>
               </div>
               
             </div>
           </div>
+            
           <!-- (click)="deleteCar(auto.codigo)" -->
         </td>
       </tr>
@@ -54,5 +57,6 @@
     </tbody>
   </table>
 
+ 
 
 
