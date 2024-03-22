@@ -52,6 +52,15 @@ export class TablaPrincipalComponent /* implements OnInit */ {
     })
   }
 
+  nuevoAutoEditar(id:string){
+    //this.autoEditar = id
+    this.listaService.autoEditar.next(id)
+    return this.autoEditar = this.listaService.autoEditar$.subscribe((auto)=>{
+      this.autoEditar = auto;
+      console.log("Se va a borrar este auto", auto)
+    })
+  }
+
  /*  carToDelete(id:string){
     console.log("id obtenida", id)
   } */
@@ -59,15 +68,7 @@ export class TablaPrincipalComponent /* implements OnInit */ {
     this.autoEditarContent = auto
     console.log("id a borrar obtenida", this.autoEditarContent)
   }) */
-  deleteCar(id:string){
-    this.autoEditar = id
-    console.log("id a borrar", this.autoEditar)
-    this.listaService.deleteItem(id)
-    //this.listaService.refreshList()
-    /* .subscribe((respuesta)=>{
-      if(respuesta.mensaje=="Vehiculo eliminado con exito") console.log("borrado!")
-    }) */
-  }
+ 
 
 
   /* setCarToEdit(auto:string){

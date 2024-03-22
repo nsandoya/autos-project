@@ -84,7 +84,7 @@ export class AutosInfo implements OnInit{
   }
 
   deleteItem(itemID:any){
-     this.http.delete(this.baseURL+'vehiculo/'+itemID).subscribe(
+     return this.http.delete(this.baseURL+'vehiculo/'+itemID).subscribe(
       (response) => {
         console.log("borrado", itemID);
         //this.router.navigate(['/autos/'])

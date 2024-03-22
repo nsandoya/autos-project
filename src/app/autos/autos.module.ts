@@ -14,6 +14,7 @@ import { AutosComponent } from './components/autos/autos.component';
 import { EditarAutoComponent } from './components/editar-auto/editar-auto.component'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
+import { BorrarAutoComponent } from './components/borrar-auto/borrar-auto.component';
 /* import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; */
 
 
@@ -28,6 +29,7 @@ import { AppRoutingModule } from '../app-routing.module';
     AutosMainPageComponent,
 /*     NuevoAutoComponent, */
     EditarAutoComponent,
+    BorrarAutoComponent,
     AutosComponent,
   ],
   imports: [
@@ -48,7 +50,8 @@ import { AppRoutingModule } from '../app-routing.module';
     AutosMainPageComponent,
     AutosComponent,
 /*     NuevoAutoComponent, */
-    EditarAutoComponent
+    EditarAutoComponent, 
+    BorrarAutoComponent
   ]
 
 })
