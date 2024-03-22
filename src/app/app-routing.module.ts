@@ -22,7 +22,7 @@ const routes: Routes = [
     children: [
       { path: 'all', component: AutosMainPageComponent},
       { path: 'crear', component: AddItemComponent},
-      { path: 'editar', component: EditarAutoComponent},
+      { path: 'editar/:id', component: EditarAutoComponent},
     ]
   },
   {

@@ -95,7 +95,7 @@ export class TablaPrincipalComponent /* implements OnInit */ {
   }
 
 
-  setCarToEdit(auto:string){
+  /* setCarToEdit(auto:string){
     console.log("tabla comp, esta es la fx")
 
     this.listaService.carToEdit(auto)
@@ -104,21 +104,22 @@ export class TablaPrincipalComponent /* implements OnInit */ {
       console.log("id a usar", this.autoEditar)
     })
 
-  //if(!this.autoEditar) console.log("no hay id")
-
-  //this.getCarToEditData(this.autoEditar)
-    /* this.listaService.autoEditar$.subscribe((auto:any) => {
-    }) */
   }
   
   getCarToEditData(auto:string){
-    /* return this.listaService.getCarById(auto).subscribe((autoContent:ListaInterface)=>{
-      this.autoEditarContent = autoContent
-      console.log("y...",this.autoEditarContent)
-    }) */
     return this.listaService.autoEditar$.subscribe((autoInfo: any) => {
       this.autoEditarContent = autoInfo
       console.log("content", this.autoEditarContent)
     })
-  }
+  } */
 }
+//if(!this.autoEditar) console.log("no hay id")
+
+//this.getCarToEditData(this.autoEditar)
+  /* this.listaService.autoEditar$.subscribe((auto:any) => {
+  }) */
+
+/* return this.listaService.getCarById(auto).subscribe((autoContent:ListaInterface)=>{
+  this.autoEditarContent = autoContent
+  console.log("y...",this.autoEditarContent)
+}) */

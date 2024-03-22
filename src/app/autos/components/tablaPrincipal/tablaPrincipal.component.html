@@ -24,8 +24,12 @@
         </td>
         <td>
           <a [routerLink]="['/autos/' + auto.codigo]"><button class="btn btn-outline-primary mx-2"><i class="bi bi-list"></i></button></a>
-          <a (click)="setCarToEdit(auto.codigo) "><button class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#editModal"><i class="bi bi-pencil-square "></i></button></a>
-          <app-editar-auto></app-editar-auto>
+
+          <a [routerLink]="['/autos/editar/' + auto.codigo]"><button class="btn btn-primary mx-2"><i class="bi bi-pencil-square "></i></button></a>
+          
+
+          <!-- <a><button class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#editModal"><i class="bi bi-pencil-square "></i></button></a> -->
+          <!-- <app-editar-auto></app-editar-auto> -->
           <!-- <a ><button class="btn btn-primary mx-2"><i class="bi bi-pencil-square "></i></button></a> -->
           <a ><button class="btn btn-primary mx-2" (click)="toggleImg()"><i class="bi bi-app-indicator" ></i></button></a>
 
