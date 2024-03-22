@@ -37,7 +37,7 @@ export class SearchInputComponent {
       this.autos = autos
       
       //console.log("Búsqueda 2.0",...this.autos)
-      console.log("Refresh",this.listaService.refreshList(this.autos))
+      this.listaService.refreshList(this.autos)
       
     })
   }

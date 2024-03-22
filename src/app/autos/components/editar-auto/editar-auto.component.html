@@ -1,72 +1,76 @@
-<form [formGroup]="newItemForm"  class="text-start w-75 mx-auto mb-5">
-    <div class="mb-3">
-      <label for="recipient-name" class="col-form-label text-start">Código</label>
-      <input type="text" placeholder="{{auto.codigo}}" class="form-control" id="recipient-name"
-      formControlName="codigo"
-      [ngClass]="{'is-invalid': newItemForm.get('codigo')?.invalid && newItemForm.get('codigo')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+<h2 class="w-75 mx-auto">Editar {{auto.marca}} {{auto.modelo}}</h2>
+<div *ngIf="auto">
+    
+    <form [formGroup]="newItemForm" (onSubmit)="onSubmit()" class="text-start w-75 mx-auto mb-5">
+        <div class="mb-3">
+          <label for="recipient-name"  class="col-form-label text-start">Código</label>
+          <input type="text" class="form-control" value="{{auto.codigo}}" placeholder="{{auto.codigo}}" id="recipient-name"
+          formControlName="codigo"
+          [ngClass]="{'is-invalid': newItemForm.get('codigo')?.invalid && newItemForm.get('codigo')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+          
+          <label for="recipient-name" class="col-form-label text-start">Marca</label>
+          <input type="text" class="form-control" value="{{auto.marca}}" placeholder="{{auto.codigo}}" id="recipient-name"
+          formControlName="marca"
+          [ngClass]="{'is-invalid': newItemForm.get('marca')?.invalid && newItemForm.get('marca')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+          <div class="alert alert-danger" *ngIf="newItemForm.get('marca')?.invalid && newItemForm.get('marca')?.touched">
+              Este campo es requerido. Debe tener entre 3 y 20 caractertes
+          </div>
       
-      <label for="recipient-name" class="col-form-label text-start">Marca</label>
-      <input type="text" placeholder="{{auto.marca}}" class="form-control" id="recipient-name"
-      formControlName="marca"
-      [ngClass]="{'is-invalid': newItemForm.get('marca')?.invalid && newItemForm.get('marca')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
-      <div class="alert alert-danger" *ngIf="newItemForm.get('marca')?.invalid && newItemForm.get('marca')?.touched">
-          Este campo es requerido. Debe tener entre 3 y 20 caractertes
+          <label for="recipient-name" class="col-form-label text-start">Modelo</label>
+          <input type="text"  placeholder="{{auto.modelo}}" class="form-control" id="recipient-name"
+          formControlName="modelo"
+          [ngClass]="{'is-invalid': newItemForm.get('modelo')?.invalid && newItemForm.get('modelo')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+          <div class="alert alert-danger" *ngIf="newItemForm.get('modelo')?.invalid && newItemForm.get('modelo')?.touched">
+              Este campo es requerido. Debe tener entre 3 y 20 caractertes
+          </div>
+      
+          <label for="recipient-name" class="col-form-label text-start">Precio</label>
+          <input type="text" placeholder="{{auto.precio}}" class="form-control" id="recipient-name"
+          formControlName="precio"
+          [ngClass]="{'is-invalid': newItemForm.get('precio')?.invalid && newItemForm.get('precio')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+          <div class="alert alert-danger" *ngIf="newItemForm.get('precio')?.invalid && newItemForm.get('precio')?.touched">
+              Este campo es requerido. Debe tener entre 3 y 20 caractertes
+          </div>
+      
+          <label for="recipient-name" class="col-form-label text-start">Kilometraje</label>
+          <input type="text" placeholder="{{auto.kilometraje}}" class="form-control" id="recipient-name"
+          formControlName="kilometraje"
+          [ngClass]="{'is-invalid': newItemForm.get('kilometraje')?.invalid && newItemForm.get('kilometraje')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+          <div class="alert alert-danger" *ngIf="newItemForm.get('kilometraje')?.invalid && newItemForm.get('kilometraje')?.touched">
+              Este campo es requerido. Debe tener entre 3 y 20 caractertes
+          </div>
+    
+          <label for="recipient-name" class="col-form-label text-start">Año</label>
+          <input type="text"  placeholder="{{auto.anio}}" class="form-control" id="recipient-name"
+          formControlName="anio"
+          [ngClass]="{'is-invalid': newItemForm.get('anio')?.invalid && newItemForm.get('anio')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+          <div class="alert alert-danger" *ngIf="newItemForm.get('anio')?.invalid && newItemForm.get('anio')?.touched">
+              Este campo es requerido. Debe tener entre 3 y 20 caractertes
+          </div>
+      
+          <label for="recipient-name" class="col-form-label text-start">Calificación</label>
+          <input type="text"  placeholder="{{auto.calificacion}}" class="form-control" id="recipient-name"
+          formControlName="calificacion"
+          [ngClass]="{'is-invalid': newItemForm.get('calificacion')?.invalid && newItemForm.get('calificacion')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+          <div class="alert alert-danger" *ngIf="newItemForm.get('calificacion')?.invalid && newItemForm.get('calificacion')?.touched">
+              Este campo es requerido. Debe tener entre 3 y 20 caractertes
+          </div>
+      
+        </div>
+        <div class="mb-3">
+          <label for="message-text"  class="col-form-label text-start">Foto (URL)</label>
+          <textarea class="form-control" placeholder="{{auto.foto}}" id="message-text"
+          formControlName="foto"
+          [ngClass]="{'is-invalid': newItemForm.get('foto')?.invalid && newItemForm.get('foto')?.touched}"></textarea>
+          <div class="alert alert-danger" *ngIf="newItemForm.get('foto')?.invalid && newItemForm.get('foto')?.touched">
+              Este campo es requerido. Debe tener entre 10 y 50 caractertes
+          </div>
+        </div>
+    
+      <div class="modal-footer">
+        <a [routerLink]="['/autos']"><button type="button" class="btn btn-secondary mx-3" >Cancelar</button></a> 
+        <button type="submit" (click)="onSubmit()" class="btn btn-primary">Actualizar</button>
+          <!-- Para que funcione, el submit siempre debe estar antes de cerrar la etiqueta <formArrayNameForm> -->
       </div>
-  
-      <label for="recipient-name" class="col-form-label text-start">Modelo</label>
-      <input type="text" placeholder="{{auto.modelo}}" placeholder="{{auto.modelo}}" class="form-control" id="recipient-name"
-      formControlName="modelo"
-      [ngClass]="{'is-invalid': newItemForm.get('modelo')?.invalid && newItemForm.get('modelo')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
-      <div class="alert alert-danger" *ngIf="newItemForm.get('modelo')?.invalid && newItemForm.get('modelo')?.touched">
-          Este campo es requerido. Debe tener entre 3 y 20 caractertes
-      </div>
-  
-      <label for="recipient-name" class="col-form-label text-start">Precio</label>
-      <input type="text" placeholder="{{auto.precio}}" class="form-control" id="recipient-name"
-      formControlName="precio"
-      [ngClass]="{'is-invalid': newItemForm.get('precio')?.invalid && newItemForm.get('precio')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
-      <div class="alert alert-danger" *ngIf="newItemForm.get('precio')?.invalid && newItemForm.get('precio')?.touched">
-          Este campo es requerido. Debe tener entre 3 y 20 caractertes
-      </div>
-  
-      <label for="recipient-name" class="col-form-label text-start">Kilometraje</label>
-      <input type="text" placeholder="{{auto.kilometraje}}" class="form-control" id="recipient-name"
-      formControlName="kilometraje"
-      [ngClass]="{'is-invalid': newItemForm.get('kilometraje')?.invalid && newItemForm.get('kilometraje')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
-      <div class="alert alert-danger" *ngIf="newItemForm.get('kilometraje')?.invalid && newItemForm.get('kilometraje')?.touched">
-          Este campo es requerido. Debe tener entre 3 y 20 caractertes
-      </div>
-
-      <label for="recipient-name" class="col-form-label text-start">Año</label>
-      <input type="text" placeholder="{{auto.anio}}" class="form-control" id="recipient-name"
-      formControlName="anio"
-      [ngClass]="{'is-invalid': newItemForm.get('anio')?.invalid && newItemForm.get('anio')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
-      <div class="alert alert-danger" *ngIf="newItemForm.get('anio')?.invalid && newItemForm.get('anio')?.touched">
-          Este campo es requerido. Debe tener entre 3 y 20 caractertes
-      </div>
-  
-      <label for="recipient-name" class="col-form-label text-start">Calificación</label>
-      <input type="text" placeholder="{{auto.calificacion}}" class="form-control" id="recipient-name"
-      formControlName="calificacion"
-      [ngClass]="{'is-invalid': newItemForm.get('calificacion')?.invalid && newItemForm.get('calificacion')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
-      <div class="alert alert-danger" *ngIf="newItemForm.get('calificacion')?.invalid && newItemForm.get('calificacion')?.touched">
-          Este campo es requerido. Debe tener entre 3 y 20 caractertes
-      </div>
-  
-  
-    </div>
-    <div class="mb-3">
-      <label for="message-text" class="col-form-label text-start">Foto (URL)</label>
-      <textarea class="form-control" id="message-text"
-      formControlName="foto"
-      [ngClass]="{'is-invalid': newItemForm.get('foto')?.invalid && newItemForm.get('foto')?.touched}"></textarea>
-      <div class="alert alert-danger" *ngIf="newItemForm.get('foto')?.invalid && newItemForm.get('foto')?.touched">
-          Este campo es requerido. Debe tener entre 10 y 50 caractertes
-      </div>
-    </div>
-  <div class="modal-footer">
-    <a [routerLink]="['/autos']"><button type="button" class="btn btn-secondary mx-3" >Cancelar</button></a> 
-    <button type="submit" class="btn btn-primary">Guardar</button>
-      <!-- Para que funcione, el submit siempre debe estar antes de cerrar la etiqueta <formArrayNameorm> -->
-  </div>
-  </form>
+    </form>
+</div>

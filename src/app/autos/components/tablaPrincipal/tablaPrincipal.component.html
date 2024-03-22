@@ -6,8 +6,8 @@
         <th scope="col">#</th>
         <th scope="col">Marca</th>
         <th scope="col">Modelo</th>
-        <th scope="col" *ngIf="showImg">Imagen</th>
         <th scope="col">Precio</th>
+        <th scope="col" *ngIf="showImg">Imagen</th>
         <th scope="col">Calificación</th>
         <th scope="col">Acciones</th>
       </tr>
@@ -17,8 +17,8 @@
         <th scope="row">{{ auto.codigo }}</th>
         <td>{{ auto.marca }}</td>
         <td>{{ auto.modelo }}</td>
-        <td *ngIf="showImg"><img src="{{ auto.foto }}" alt="{{ auto.modelo }}" class="img-table"></td>
         <td>{{ auto.precio | currency }}</td>
+        <td *ngIf="showImg"><img src="{{ auto.foto }}" alt="{{ auto.modelo }}" class="img-table"></td>
         <td *ngIf="auto.calificacion">
             <i *ngFor="let star of generateStars(auto.calificacion)" class="bi bi-star-fill" style="color: #007bff;"></i>
         </td>
@@ -33,7 +33,7 @@
           <!-- <a ><button class="btn btn-primary mx-2"><i class="bi bi-pencil-square "></i></button></a> -->
           <a ><button class="btn btn-primary mx-2" (click)="toggleImg()"><i class="bi bi-app-indicator" ></i></button></a>
 
-          <a ><button class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="carToDelete(auto.codigo)"><i class="bi bi-x-lg" ></i></button></a>
+          <a ><button class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="deleteCar(auto.codigo)"><i class="bi bi-x-lg" ></i></button></a>
 
            <!--Delete Modal -->
           <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

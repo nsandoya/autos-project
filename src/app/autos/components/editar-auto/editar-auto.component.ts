@@ -15,11 +15,30 @@ import { ListaInterface } from '../../interfaces/lista-interface';
 })
 export class EditarAutoComponent implements OnInit{
   
-  newItemForm: FormGroup = new FormGroup({})
+  newItemForm: FormGroup = new FormGroup({
+    /* codigo,
+    marca:,
+    modelo:,
+    anio:,
+    calificacion: ,
+    kilometraje:,
+    precio:,
+    foto, */
+  })
   id:string=""
-  auto:any
+  auto:ListaInterface | any = {}
   
   constructor(private route: ActivatedRoute, private fBuilder: FormBuilder, private listaService: AutosInfo, private router: Router){
+    this.newItemForm = this.fBuilder.group({
+      codigo: ``,
+      marca: ``,
+      modelo: ``,
+      anio: ``,
+      calificacion: ``,
+      kilometraje: ``,
+      precio: ``,
+      foto: ``,
+    })
     
   }
 
@@ -37,7 +56,8 @@ export class EditarAutoComponent implements OnInit{
           //Inputs a usar
           codigo: [
             // Valor del input
-            '',
+            `${this.auto.codigo}`,
+
             // Validaciones
             [
               Validators.required,
@@ -47,7 +67,8 @@ export class EditarAutoComponent implements OnInit{
           ],
           marca: [
             // Valor del input
-            '',
+            `${this.auto.marca}`,
+
             // Validaciones
             [
               Validators.required,
@@ -57,7 +78,7 @@ export class EditarAutoComponent implements OnInit{
           ],
           modelo: [
             // Valor del input
-            '',
+            `${this.auto.modelo}`,
             // Validaciones
             [
               Validators.required,
@@ -67,7 +88,8 @@ export class EditarAutoComponent implements OnInit{
           ],
           anio: [
             // Valor del input
-            '',
+            `${this.auto.anio}`,
+
             // Validaciones
             [
               Validators.minLength(4),
@@ -76,7 +98,8 @@ export class EditarAutoComponent implements OnInit{
           ],
           calificacion: [
             // Valor del input
-            '',
+            `${this.auto.calificacion}`,
+
             // Validaciones
             [
               Validators.minLength(1),
@@ -84,7 +107,8 @@ export class EditarAutoComponent implements OnInit{
           ],
           kilometraje: [
             // Valor del input
-            '',
+            `${this.auto.kilometraje}`,
+
             // Validaciones
             [
               Validators.minLength(1),
@@ -92,7 +116,8 @@ export class EditarAutoComponent implements OnInit{
           ],
           precio: [
             // Valor del input
-            '',
+            `${this.auto.precio}`,
+
             // Validaciones
             [
               Validators.required,
@@ -100,7 +125,8 @@ export class EditarAutoComponent implements OnInit{
             ]
           ],
           foto: [
-            '',
+            `${this.auto.foto}`,
+
             [
               Validators.required,
               Validators.minLength(10),
@@ -111,6 +137,15 @@ export class EditarAutoComponent implements OnInit{
         });
       })
     })
+  }
+
+  onSubmit(){
+    console.log("click funciona")
+    if(this.newItemForm.invalid){
+      console.log("invalid form")
+      return
+    }
+    return console.log("Auto editado",this.listaService.editItem(this.auto.id, this.newItemForm.value))
   }
 }
 

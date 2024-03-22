@@ -27,6 +27,9 @@ export class AutoDetailPageComponent implements OnInit, AfterViewInit{
   ngAfterViewInit(): void {
     this.activeTab = this.main ;
   }
+  /* ngAfterContentChecked(): void {
+    this.activeTab = this.main ;
+  } */
  /*  ngAfterContentChecked() {
       this.activeTab.DataContext = this.DataContext;
       this.sampleViewModel.Position = this.Position;

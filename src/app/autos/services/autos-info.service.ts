@@ -71,10 +71,10 @@ export class AutosInfo implements OnInit{
     return this.listaPrincipal$ = this.http.get<RespuestaAPI>(this.baseURL+'vehiculo/'+id).pipe(map((auto) => auto.data))
     //return this.autos.find((item:any)=>item.id == id)
   }
-  getCarById(id:any): ListaInterface | any{  
+  /* getCarById(id:any): ListaInterface | any{  
     return this.autoEditar$ = this.http.get<RespuestaAPI>(this.baseURL+'vehiculo/'+id).pipe(map((auto) => auto.data))
     //return this.autos.find((item:any)=>item.id == id)
-  }
+  } */
 
   addItem(item:ListaInterface){
    // this.listaPrincipal.next(this.autos) 
@@ -104,12 +104,12 @@ export class AutosInfo implements OnInit{
     return this.listaPrincipal.next(nuevosRegistros);
   }
 
-  carToEdit(auto:string){
+/*   carToEdit(auto:string){
     console.log("id auto recibida", auto)
     this.autoEditar.next(auto)
     //return this.getCarById(auto)
 
-  }
+  } */
 
   /* refreshCarToEdit(auto:string) {
     return this.autoEditar.next(auto);
@@ -118,6 +118,13 @@ export class AutosInfo implements OnInit{
     return this.filterListObservable.asObservable()
     //return this.filterListObservable.asObservable() 
   } */
+  editItem(id:string, body:any){
+    return this.http.put(this.baseURL + 'vehiculo/'+ id,{params: body}).subscribe((auto)=>{
+      //console.log("Auto actualizado", auto)
+      console.log("Peticion", this.http)
+    })
+  }
+
   searchItem(searchCr:any){
     console.log("desde la fx", searchCr)
     

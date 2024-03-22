@@ -30,35 +30,11 @@ export class TablaPrincipalComponent /* implements OnInit */ {
   
   // OnInit es un evento (que en este caso se implementa como un método) que se ejecuta cuando carga un componente
   ngOnInit(): void{
-    // acá nos estamos suscribiendo al observable, y se actualizará c/ vez que haya cambios
-    /* this.listaService.listaPrincipal.subscribe((autos:any)=>{
-      this.autos = autos
-    }) */
-    /* 
-
-    this.listaService.getFilteredList().subscribe((listaFiltrada:any)=>{
-      this.filterList = listaFiltrada
-      console.log(this.filterList)
-
-    }) */
-    /* console.log(this.autos)
-    this.listaService.getFilteredList().subscribe((autosFiltrados)=>{
-      this.filterList = autosFiltrados
-    }); */
-    /* this.listaService.listaPrincipal.subscribe(
-      (nuevosRegistros:any) => {
-        this.autos = nuevosRegistros;
-      }
-    ); */
+    
     this.listaService.getCompleteList().subscribe((autos)=>{
       this.autos = autos;
       console.log("Autos despues de detail", this.autos)
     })
-    
-    /* this.listaService.filterListObservable.subscribe((autos:any)=>{
-      this.autos = autos
-    }) */
-    
   }
   
   toggleImg(){
@@ -66,7 +42,6 @@ export class TablaPrincipalComponent /* implements OnInit */ {
   }
 
   generateStars(n:number){
-
     return this.listaService.generateStars(n)
   }
 
@@ -77,15 +52,15 @@ export class TablaPrincipalComponent /* implements OnInit */ {
     })
   }
 
-  carToDelete(id:string){
-    this.autoEditar = id
+ /*  carToDelete(id:string){
     console.log("id obtenida", id)
-    /* this.listaService.getCompleteList(id).subscribe((auto)=>{
-      this.autoEditarContent = auto
-      console.log("id a borrar obtenida", this.autoEditarContent)
-    }) */
-  }
+  } */
+  /* this.listaService.getCompleteList(id).subscribe((auto)=>{
+    this.autoEditarContent = auto
+    console.log("id a borrar obtenida", this.autoEditarContent)
+  }) */
   deleteCar(id:string){
+    this.autoEditar = id
     console.log("id a borrar", this.autoEditar)
     this.listaService.deleteItem(id)
     //this.listaService.refreshList()
