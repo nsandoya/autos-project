@@ -10,17 +10,18 @@
       </div>  
     </div>
 </div> -->
-<div class="card text-center">
+<div class="card text-center" >
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
-        <a class="nav-link active text-primary" aria-current="true" (click)="activeTab=main">Overview</a>
+        <a class="nav-link active text-primary" aria-current="true" (click)="activeTab=main" [ngClass]="
+          {'active':activeTab==main, 'text-active':activeTab==main}">Overview</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-black-50" (click)="activeTab=detail1">Detalles</a>
+        <a class="nav-link text-black-50" (click)="activeTab=detail1" [ngClass]="{'active':activeTab==detail1, 'text-active':activeTab==detail1}" >Detalles</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link text-black-50" (click)="activeTab=detail2">Agendar prueba</a>
+      <li class="nav-item active">
+        <a class="nav-link text-black-50" (click)="activeTab=detail2" [ngClass]="{'active':activeTab==detail2, 'text-active':activeTab==detail2}">Agendar prueba</a>
       </li>
     </ul>
   </div>
@@ -44,15 +45,15 @@
   </div>
 </ng-template>
 <!-- 2 -->
-<ng-template #detail2>
+<ng-template #detail1>
   <div class="card">
     <div class="card-header">
       {{ auto.modelo }}
     </div>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
-        <p>{{ auto.precio }}</p>
-        <footer class="blockquote-footer"><cite title="Source Title">Source Title</cite></footer>
+        <p>{{ auto.precio | currency }}</p>
+        <footer class="blockquote-footer"><cite title="Source Title">Precio (incluye IVA)</cite></footer>
       </blockquote>
     </div>
   </div>
