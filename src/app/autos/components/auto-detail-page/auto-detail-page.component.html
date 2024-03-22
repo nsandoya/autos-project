@@ -1,4 +1,4 @@
-<div class="card mb-3 cont" *ngIf="auto">
+<!-- <div class="card mb-3 cont" *ngIf="auto">
     <img src="{{auto.foto}}" class="card-img-top" style="height: 500px;max-height: 500px; object-fit: cover;" alt="...">
     <div class="card-body">
       <h4 class="card-title text-center display-5">{{auto.modelo}}</h4>
@@ -9,15 +9,65 @@
         <a href=""><button class="btn btn-primary">Vender</button></a>
       </div>  
     </div>
+</div> -->
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active text-primary" aria-current="true" (click)="activeTab=main">Overview</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-black-50" (click)="activeTab=detail1">Detalles</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-black-50" (click)="activeTab=detail2">Agendar prueba</a>
+      </li>
+    </ul>
+  </div>
+  <ng-container class="card-body" [ngTemplateOutlet]="activeTab">
+    
+  </ng-container>
 </div>
 
+<!-- Ng templates -->
+<!-- 1 -->
+<ng-template #main>
+  <div class="card text-center">
 
-<div class="container text-center" *ngIf="!auto">
+    <h5 class="card-title">{{  auto.modelo }}</h5>
+    <img src="{{auto.foto}}" class="card-img-top" style="height: 400px;max-height: 400px; object-fit: cover;" alt="...">
+    <span class="w-100">
+      <i *ngFor="let star of generateStars(auto.calificacion)" class="bi bi-star-fill" style="color: #007bff;"></i>
+    </span>
+    <p class="card-text">Aerodinámico, veloz, y del tamaño de tu bolsillo. Un auto pensado para durar, y perdurar en tus recuerdos en forma de experiencias únicas</p>
+    <a class="btn btn-primary disabled">Comprar</a>
+  </div>
+</ng-template>
+<!-- 2 -->
+<ng-template #detail2>
+  <div class="card">
+    <div class="card-header">
+      {{ auto.modelo }}
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{ auto.precio }}</p>
+        <footer class="blockquote-footer"><cite title="Source Title">Source Title</cite></footer>
+      </blockquote>
+    </div>
+  </div>
+</ng-template>
 
-    <h1 class="fs-1"><i class="bi bi-bug-fill"></i> </h1>
-    <h1>Lo sentimos</h1>
-    <h3>La página que buscas no existe :c</h3>
-</div>
+<!-- Mensaje de error -->
+<!-- <div class="container-fluid justify-content-center text-center" style="margin: auto 0" *ngIf="!auto">
+  <div class="spinner-border align-self-center" style="width: 3rem; height: 3rem; " role="status">
+  </div>
+</div> -->
+<!-- <span class="fs-3">Cargando...</span> -->
+
+ <!--  <h1 class="fs-1"><i class="bi bi-bug-fill"></i> </h1>
+  <h1>Lo sentimos</h1>
+  <h3>La página que buscas no existe :c</h3> -->
 
 
 

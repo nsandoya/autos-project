@@ -97,6 +97,15 @@ export class AutosInfo implements OnInit{
     return this.filterList.next(this.filterList)  */
   }
 
+  generateStars(number:number){
+    let stars = [];
+    for(let i=1; i<=number; i++){
+      stars.push(i)
+    }
+    return(stars) 
+  }
+
+
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {

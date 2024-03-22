@@ -61,12 +61,9 @@ export class TablaPrincipalComponent /* implements OnInit */ {
     this.showImg = !this.showImg
   }
 
-  generateStars(number:number){
-    let stars = [];
-    for(let i=1; i<=number; i++){
-      stars.push(i)
-    }
-    return(stars) 
+  generateStars(n:number){
+
+    return this.listaService.generateStars(n)
   }
 
   getItemByID(){
