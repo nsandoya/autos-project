@@ -1,7 +1,7 @@
     <div class="container row">
 
         <input class="form-control me-2 col" type="search" placeholder="Busca un auto" aria-label="Search" style="width: 350px;"
-        [(ngModel)]="searchCr" >
+        [(ngModel)]="searchCr" (input)="noValue()">
         <!-- (keyup)="this.searchItem()" -->
         <button class="btn btn-primary" style="width: 40px !important;" (click)="searchItem()"><i class="bi bi-search"></i></button>
     </div>
