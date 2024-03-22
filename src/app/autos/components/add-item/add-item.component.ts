@@ -13,7 +13,17 @@ export class AddItemComponent {
   constructor(private fBuilder: FormBuilder, private listaService: AutosInfo){
     this.newItemForm = fBuilder.group({
       //Inputs a usar
-      name: [
+      codigo: [
+        // Valor del input
+        '',
+        // Validaciones
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(6),
+        ]
+      ],
+      marca: [
         // Valor del input
         '',
         // Validaciones
@@ -23,22 +33,59 @@ export class AddItemComponent {
           Validators.maxLength(30),
         ]
       ],
-      detail: [
+      modelo: [
+        // Valor del input
         '',
+        // Validaciones
         [
           Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(50),
+          Validators.minLength(3),
+          Validators.maxLength(30),
         ]
       ],
-      image: [
+      anio: [
+        // Valor del input
+        '',
+        // Validaciones
+        [
+          Validators.minLength(4),
+          Validators.maxLength(4),
+        ]
+      ],
+      calificación: [
+        // Valor del input
+        '',
+        // Validaciones
+        [
+          Validators.minLength(1),
+        ]
+      ],
+      kilometraje: [
+        // Valor del input
+        '',
+        // Validaciones
+        [
+          Validators.minLength(1),
+        ]
+      ],
+      precio: [
+        // Valor del input
+        '',
+        // Validaciones
+        [
+          Validators.required,
+          Validators.minLength(2),
+        ]
+      ],
+      foto: [
         '',
         [
           Validators.required,
           Validators.minLength(10),
           Validators.maxLength(450),
         ]
-      ]
+      ],
+
     });
   }
   onSubmit(){

@@ -10,7 +10,7 @@ import { AddItemComponent } from './components/add-item/add-item.component';
 import { AutosMainPageComponent } from './components/autos-main-page/autos-main-page.component';
 import { RouterModule } from '@angular/router';
 import { AutosComponent } from './components/autos/autos.component';
-import { NuevoAutoComponent } from './components/nuevo-auto/nuevo-auto.component';
+/* import { NuevoAutoComponent } from './components/nuevo-auto/nuevo-auto.component'; */
 import { EditarAutoComponent } from './components/editar-auto/editar-auto.component'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
@@ -26,7 +26,7 @@ import { AppRoutingModule } from '../app-routing.module';
     SearchInputComponent,
     AddItemComponent,
     AutosMainPageComponent,
-    NuevoAutoComponent,
+/*     NuevoAutoComponent, */
     EditarAutoComponent,
     AutosComponent,
   ],
@@ -47,7 +47,7 @@ import { AppRoutingModule } from '../app-routing.module';
     AddItemComponent,
     AutosMainPageComponent,
     AutosComponent,
-    NuevoAutoComponent,
+/*     NuevoAutoComponent, */
     EditarAutoComponent
   ]
 

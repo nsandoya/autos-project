@@ -5,8 +5,9 @@ import { AutoDetailPageComponent } from './autos/components/auto-detail-page/aut
 import { TablaPrincipalComponent } from './autos/components/tablaPrincipal/tablaPrincipal.component';
 import { AutosMainPageComponent } from './autos/components/autos-main-page/autos-main-page.component';
 import { AutosComponent } from './autos/components/autos/autos.component';
-import { NuevoAutoComponent } from './autos/components/nuevo-auto/nuevo-auto.component';
+/* import { NuevoAutoComponent } from './autos/components/nuevo-auto/nuevo-auto.component'; */
 import { EditarAutoComponent } from './autos/components/editar-auto/editar-auto.component';
+import { AddItemComponent } from './autos/components/add-item/add-item.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
     component: AutosComponent,
     children: [
       { path: 'all', component: AutosMainPageComponent},
-      { path: 'crear', component: NuevoAutoComponent},
+      { path: 'crear', component: AddItemComponent},
       { path: 'editar', component: EditarAutoComponent},
     ]
   },
