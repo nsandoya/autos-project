@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AutosInfo } from '../../services/autos-info.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-item',
@@ -10,7 +11,7 @@ import { AutosInfo } from '../../services/autos-info.service';
 export class AddItemComponent {
   newItemForm: FormGroup
 
-  constructor(private fBuilder: FormBuilder, private listaService: AutosInfo){
+  constructor(private fBuilder: FormBuilder, private listaService: AutosInfo, private router: Router){
     this.newItemForm = fBuilder.group({
       //Inputs a usar
       codigo: [
@@ -52,7 +53,7 @@ export class AddItemComponent {
           Validators.maxLength(4),
         ]
       ],
-      calificación: [
+      calificacion: [
         // Valor del input
         '',
         // Validaciones
@@ -90,12 +91,19 @@ export class AddItemComponent {
   }
   onSubmit(){
     if(this.newItemForm.invalid){
+      console.log("Invalido")
       return
     }
-    console.log(this.newItemForm.value)
-    this.listaService.addItem({
-      id: this.listaService.autos.length + 1,
-      ...this.newItemForm.value
+    console.log("Nuevo auto",this.newItemForm.value)
+    this.listaService.addItem(this.newItemForm.value).subscribe((auto:any)=>{
+      console.log("Nuevo auto",auto)
+
     })
   }
+    /* this.listaService.addItem({
+      ...this.newItemForm.value
+    }) */
+    /* id: this.listaService.autos.length + 1, */
+
+    //this.router.navigate(['/autos/'+this.newItemForm.value.codigo])
 }

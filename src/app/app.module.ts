@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AutosModule } from './autos/autos.module';
+import { InterceptorService } from './autos/services/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { AutosModule } from './autos/autos.module';
     AppRoutingModule,
     ReactiveFormsModule, 
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi : true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

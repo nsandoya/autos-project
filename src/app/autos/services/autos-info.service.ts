@@ -2,6 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { ListaInterface, RespuestaAPI } from '../interfaces/lista-interface';
 import { BehaviorSubject, Subject, map } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -75,9 +76,10 @@ export class AutosInfo implements OnInit{
     //return this.autos.find((item:any)=>item.id == id)
   }
 
-  addItem(item:ListaInterface):void{
-    this.autos.push(item)
-    this.listaPrincipal.next(this.autos)
+  addItem(item:ListaInterface){
+    return this.http.post<ListaInterface>(this.baseURL+'vehiculo/', item)
+    /* this.autos.push(item)
+    this.listaPrincipal.next(this.autos) */
 
   }
 
@@ -85,6 +87,8 @@ export class AutosInfo implements OnInit{
      this.http.delete(this.baseURL+'vehiculo/'+itemID).subscribe(
       (response) => {
         console.log("borrado", itemID);
+        //this.router.navigate(['/autos/'])
+
         this.getCompleteList()
         // Aquí puedes actualizar tu lista de autos si es necesario
       },
@@ -134,7 +138,7 @@ export class AutosInfo implements OnInit{
   }
 
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private router:Router) { }
 
   ngOnInit(): void {
     //this.listaPrincipal = new BehaviorSubject(this.autos)

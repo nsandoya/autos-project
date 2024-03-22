@@ -25,8 +25,12 @@
       kilometraje: number;
       precio: string; -->
 <!-- Creamos un nuevo formGroup a partir del form que creamos (constructor, add-item.component) -->
-<form [formGroup]="newItemForm" (ngSubmit)="onSubmit()" class="text-start w-75 mx-auto">
+<form [formGroup]="newItemForm" (submit)="onSubmit()" class="text-start w-75 mx-auto mb-5">
   <div class="mb-3">
+    <label for="recipient-name" class="col-form-label text-start">Código</label>
+    <input type="text" class="form-control" id="recipient-name"
+    formControlName="codigo"
+    [ngClass]="{'is-invalid': newItemForm.get('codigo')?.invalid && newItemForm.get('codigo')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
     <label for="recipient-name" class="col-form-label text-start">Marca</label>
     <input type="text" class="form-control" id="recipient-name"
     formControlName="marca"
