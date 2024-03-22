@@ -100,7 +100,6 @@ export class AddItemComponent {
       
     })
     this.listaService.getCompleteList().subscribe((autos)=>{
-
       this.router.navigate(['/autos/'+this.newItemForm.value.codigo])
     })
   }

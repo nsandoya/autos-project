@@ -2,6 +2,7 @@ import { ViewChild,Component, OnInit, TemplateRef, AfterViewInit } from '@angula
 import { ActivatedRoute } from '@angular/router';
 import { AutosInfo } from '../../services/autos-info.service';
 import { ListaInterface } from '../../interfaces/lista-interface';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-auto-detail-page',
@@ -18,14 +19,19 @@ export class AutoDetailPageComponent implements OnInit, AfterViewInit{
   // ActivatedRoute crea una instancia de clase que incluye, entre otras cosas, info asociada a un componente, cargada al route outlet
   // En mi caso, TablaPrincipal está cargada al route outlet, y al hacer click en uno de sus elementos, esta envía info (el id del auto) al routeLink.
   // Por ende, nosotros buscamos obtener ese dato para usarlo acá
-  constructor(private route: ActivatedRoute, private autosInfoService: AutosInfo){
+  constructor(private route: ActivatedRoute, private autosInfoService: AutosInfo, private cdref: ChangeDetectorRef){
 
   }
-
+  
+  
   ngAfterViewInit(): void {
-    
     this.activeTab = this.main ;
   }
+ /*  ngAfterContentChecked() {
+      this.activeTab.DataContext = this.DataContext;
+      this.sampleViewModel.Position = this.Position;
+      this.cdref.detectChanges();
+   } */
 
   ngOnInit(): void {
 

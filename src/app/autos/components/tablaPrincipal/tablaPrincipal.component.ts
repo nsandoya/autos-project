@@ -52,6 +52,7 @@ export class TablaPrincipalComponent /* implements OnInit */ {
     ); */
     this.listaService.getCompleteList().subscribe((autos)=>{
       this.autos = autos;
+      console.log("Autos despues de detail", this.autos)
     })
     
     /* this.listaService.filterListObservable.subscribe((autos:any)=>{

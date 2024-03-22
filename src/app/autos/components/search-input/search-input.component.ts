@@ -36,7 +36,7 @@ export class SearchInputComponent {
     this.listaService.getCompleteList().subscribe((autos)=>{
       this.autos = autos
       
-      console.log("Búsqueda 2.0",...this.autos)
+      //console.log("Búsqueda 2.0",...this.autos)
       console.log("Refresh",this.listaService.refreshList(this.autos))
       
     })
@@ -44,6 +44,7 @@ export class SearchInputComponent {
 
   noValue(){
     if (!this.searchCr){
+      console.log("no hay nada")
       this.returnAllItems()
     }
   }

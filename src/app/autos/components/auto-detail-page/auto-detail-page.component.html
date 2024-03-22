@@ -35,11 +35,11 @@
 <ng-template #main>
   <div class="card text-center ">
     <h2 class="card-title my-2">{{  auto.modelo }}</h2>
-    <img src="{{auto.foto}}" class="card-img-top mx-auto" style="width:500px;height: 400px;max-height: 400px; object-fit: cover;" alt="...">
+    <img src="{{auto.foto}}" class="card-img-top mx-auto my-3" style="width:auto;height: 400px;max-height: 400px; object-fit: cover;" alt="...">
     <span class="w-100">
       <i *ngFor="let star of generateStars(auto.calificacion)" class="bi bi-star-fill" style="color: #007bff;"></i>
     </span>
-    <p class="card-text w-50 my-5" style="margin: 0 auto">Aerodinámico, veloz, y del tamaño de tu bolsillo. Un auto pensado para durar, y perdurar en tus recuerdos en forma de experiencias únicas</p>
+    <p class="card-text w-50 my-3" style="margin: 0 auto">Aerodinámico, veloz, y del tamaño de tu bolsillo. Un auto pensado para durar, y perdurar en tus recuerdos en forma de experiencias únicas</p>
     <a class="btn btn-primary disabled w-25 mb-3" style="margin: 0 auto">Comprar</a>
   </div>
 </ng-template>
