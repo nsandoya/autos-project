@@ -119,7 +119,8 @@ export class AutosInfo implements OnInit{
     //return this.filterListObservable.asObservable() 
   } */
   editItem(id:string, body:any){
-    return this.http.put(this.baseURL + 'vehiculo/'+ id,{params: body}).subscribe((auto)=>{
+    return this.http.put(this.baseURL + 'vehiculo/', id,{params: body}).subscribe((auto)=>{
+    //return this.http.put(this.baseURL + 'vehiculo/'+ id,{params: body}).subscribe((auto)=>{
       //console.log("Auto actualizado", auto)
       console.log("Peticion", this.http)
     })

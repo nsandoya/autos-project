@@ -82,7 +82,7 @@ export class EditarAutoComponent implements OnInit{
             // Validaciones
             [
               Validators.required,
-              Validators.minLength(2),
+              Validators.minLength(1),
               Validators.maxLength(30),
             ]
           ],
@@ -127,11 +127,11 @@ export class EditarAutoComponent implements OnInit{
           foto: [
             `${this.auto.foto}`,
 
-            [
+            /* [
               Validators.required,
               Validators.minLength(10),
               Validators.maxLength(450),
-            ]
+            ] */
           ],
     
         });
@@ -145,6 +145,9 @@ export class EditarAutoComponent implements OnInit{
       console.log("invalid form")
       return
     }
+
+    // Mi form value está bien
+    //console.log("Auto 'editado'", this.newItemForm.value)
     return console.log("Auto editado",this.listaService.editItem(this.auto.id, this.newItemForm.value))
   }
 }

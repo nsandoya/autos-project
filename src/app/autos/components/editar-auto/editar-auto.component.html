@@ -4,12 +4,12 @@
     <form [formGroup]="newItemForm" (onSubmit)="onSubmit()" class="text-start w-75 mx-auto mb-5">
         <div class="mb-3">
           <label for="recipient-name"  class="col-form-label text-start">Código</label>
-          <input type="text" class="form-control" value="{{auto.codigo}}" placeholder="{{auto.codigo}}" id="recipient-name"
+          <input type="text" class="form-control"  placeholder="{{auto.codigo}}" id="recipient-name"
           formControlName="codigo"
           [ngClass]="{'is-invalid': newItemForm.get('codigo')?.invalid && newItemForm.get('codigo')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
           
           <label for="recipient-name" class="col-form-label text-start">Marca</label>
-          <input type="text" class="form-control" value="{{auto.marca}}" placeholder="{{auto.codigo}}" id="recipient-name"
+          <input type="text" class="form-control"  placeholder="{{auto.codigo}}" id="recipient-name"
           formControlName="marca"
           [ngClass]="{'is-invalid': newItemForm.get('marca')?.invalid && newItemForm.get('marca')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
           <div class="alert alert-danger" *ngIf="newItemForm.get('marca')?.invalid && newItemForm.get('marca')?.touched">
