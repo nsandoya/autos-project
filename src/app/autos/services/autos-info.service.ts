@@ -83,15 +83,15 @@ export class AutosInfo implements OnInit{
 
   deleteItem(itemID:any){
      this.http.delete(this.baseURL+'vehiculo/'+itemID).subscribe(
-      response => {
+      (response) => {
         console.log("borrado", itemID);
+        this.getCompleteList()
         // Aquí puedes actualizar tu lista de autos si es necesario
       },
       error => {
         console.log("Error al borrar el auto:", error);
       }
     );
-    this.getCompleteList()
     /* this.autos = this.autos.filter((item:any) => item.id !== itemID)
     this.listaPrincipal.next(this.autos) */
   }
@@ -102,8 +102,8 @@ export class AutosInfo implements OnInit{
 
   carToEdit(auto:string){
     console.log("id auto recibida", auto)
-    this.getCarById(auto)
     this.autoEditar.next(auto)
+    //return this.getCarById(auto)
 
   }
 

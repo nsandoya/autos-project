@@ -20,15 +20,39 @@
         <td *ngIf="auto.calificacion">
             <i *ngFor="let star of generateStars(auto.calificacion)" class="bi bi-star-fill" style="color: #007bff;"></i>
         </td>
-        <td >
+        <td>
           <a [routerLink]="['/autos/' + auto.codigo]"><button class="btn btn-outline-primary mx-2"><i class="bi bi-list"></i></button></a>
           <a (click)="setCarToEdit(auto.codigo) "><button class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#editModal"><i class="bi bi-pencil-square "></i></button></a>
           <app-editar-auto></app-editar-auto>
           <!-- <a ><button class="btn btn-primary mx-2"><i class="bi bi-pencil-square "></i></button></a> -->
-          <a ><button class="btn btn-primary mx-2" (click)="toggleImg()"><i class="bi bi-app-indicator"></i></button></a>
-          <a ><button class="btn btn-danger mx-2" (click)="deleteCar(auto.codigo)"><i class="bi bi-x-lg"></i></button></a>
+          <a ><button class="btn btn-primary mx-2" (click)="toggleImg()"><i class="bi bi-app-indicator" ></i></button></a>
+          <a ><button class="btn btn-danger mx-2"><i class="bi bi-x-lg" data-bs-toggle="modal" data-bs-target="#deleteModal"></i></button></a>
+
+            <!--Delete Modal -->
+          <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  ¿Estás seguro de eliminar el {{auto.marca}} {{auto.modelo}}?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteCar(auto.codigo)" >Eliminar</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <!-- (click)="deleteCar(auto.codigo)" -->
         </td>
       </tr>
       
     </tbody>
   </table>
+
+
+

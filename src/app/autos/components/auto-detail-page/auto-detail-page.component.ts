@@ -35,9 +35,9 @@ export class AutoDetailPageComponent implements OnInit, AfterViewInit{
 
       this.autosInfoService.getItemById(id).subscribe((autos:any)=>{
         this.auto = autos
-        console.log(this.auto)
+        //console.log(this.auto)
     })
-    console.log(this.activeTab)
+    //console.log(this.activeTab)
       //console.log(this.autosInfoService.filterList)
       //console.log(this.auto)
 

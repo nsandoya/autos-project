@@ -90,9 +90,9 @@ export class TablaPrincipalComponent /* implements OnInit */ {
     this.listaService.carToEdit(auto)
     this.listaService.autoEditar$.subscribe((auto:any)=>{
       this.autoEditar = auto
+      console.log("id a usar", this.autoEditar)
     })
 
-    console.log("id a usar", this.autoEditar)
   //if(!this.autoEditar) console.log("no hay id")
 
   //this.getCarToEditData(this.autoEditar)
