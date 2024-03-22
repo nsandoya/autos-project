@@ -1,5 +1,9 @@
+    <div class="container row">
 
-    <input class="form-control me-2" type="search" placeholder="Busca un auto" aria-label="Search" style="width: 350px;"
-    [(ngModel)]="searchCr" (keyup)="this.searchItem()">
+        <input class="form-control me-2 col" type="search" placeholder="Busca un auto" aria-label="Search" style="width: 350px;"
+        [(ngModel)]="searchCr" >
+        <!-- (keyup)="this.searchItem()" -->
+        <button class="btn btn-primary" style="width: 40px !important;" (click)="searchItem()"><i class="bi bi-search"></i></button>
+    </div>
     <!-- <button class="btn btn-outline-secondary" type="submit">Search</button> -->
 

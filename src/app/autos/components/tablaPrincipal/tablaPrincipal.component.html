@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let auto of autos.data">
+      <tr *ngFor="let auto of autos">
         <th scope="row">{{ auto.codigo }}</th>
         <td>{{ auto.modelo }}</td>
         <td *ngIf="showImg"><img src="{{ auto.foto }}" alt="{{ auto.modelo }}" class="img-table"></td>

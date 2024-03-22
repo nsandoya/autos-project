@@ -16,26 +16,34 @@ export class SearchInputComponent {
   constructor(private listaService: AutosInfo){}
 
   ngOnInit(){
-    this.listaService.getCompleteList().subscribe((autos)=>{
-      this.autos = autos
-    })
-    this.listaService.getFilteredList().subscribe((autos)=>{
+    //this.autos = this.listaService
+    this.autos = this.listaService.autos
+    
+  
+   /*  this.listaService.getFilteredList().subscribe((autos)=>{
       this.filterList = autos
-    })
-    console.log(this.autos)
+    }) */
+    /* this.listaService.getItemById(this.searchCr).subscribe((autos:any)=>{
+      this.filterList = autos
+    }) */
+
     //this.filterList = this.listaService.searchItem(this.searchCr);
   }
   
-  searchItem(){
-    this.listaService.searchItem(this.searchCr)
-  }
  /*  searchItem(){
-    console.log("search", this.searchCr)
-    this.filterList = this.listaService.searchItem(this.searchCr);
-    console.log("lista filtrada", this.filterList)
+    //this.listaService.searchItem(this.searchCr)
+    //this.listaService.getItemById(this.searchCr)
   } */
+  searchItem(){
+    this.listaService.searchItem(this.searchCr).subscribe((autos:any)=>{
+      this.autos = autos
+      
+    console.log("search", ...this.autos)
+    /* this.filterList = this.listaService.searchItem(this.searchCr);
+    console.log("lista filtrada", this.filterList) */
+  })
   
-  getFilteredList(){
+  /* getFilteredList(){
     this.listaService.getFilteredList()
-  }
-}
+  } */
+}}

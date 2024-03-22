@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { ListaInterface } from '../interfaces/lista-interface';
-import { BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Injectable, OnInit } from '@angular/core';
+import { ListaInterface, RespuestaAPI } from '../interfaces/lista-interface';
+import { BehaviorSubject, map } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 
-export class AutosInfo {
+export class AutosInfo implements OnInit{
   /* autos : ListaInterface[] = [
     {
       id: 1,
@@ -31,20 +31,39 @@ export class AutosInfo {
       stars: 5
     }
   ]; */
+  baseURL = "https://epico.gob.ec/vehiculo/public/api/"
   autos:ListaInterface[] | any = ""
-  
-  filterList: ListaInterface[] = [];
+  filterList: ListaInterface[] | any= "";
 
-  listaPrincipal = new BehaviorSubject(this.autos)
-  filterListObservable = new BehaviorSubject(this.autos)
+  listaPrincipal: ListaInterface| any
+  filterListObservable: ListaInterface | any
 
-  getCompleteList(){
-    return this.autos = this.http.get('https://epico.gob.ec/vehiculo/public/api/vehiculos/')
+  getCompleteList(filtro?:string, rows?:number, page?:number){
+    let body = new HttpParams();
+    body = filtro? body.set('filtro',filtro) : body;
+    body = rows? body.set('rows', rows) : body;
+    body = page? body.set('page',page) : body
+
+
+    return this.listaPrincipal = this.http.get<RespuestaAPI>(this.baseURL + 'vehiculos/', {params: body}).pipe(
+      map((autos) => autos.data)
+    )
+    // En caso de que no funcione lo de arriba, dejar esto de acá como activo
+    /* return this.listaPrincipal = this.http.get<RespuestaAPI>(this.baseURL + 'vehiculos/').pipe(
+      map((autos) => autos.data)
+    ) */
+    /* .pipe(
+      map(autos => autos.data)
+      //Object.keys(datos).map((key) => datos[key])
+    ) */
     //return this.listaPrincipal.asObservable()
   }
+  
 
   getItemById(id:any): ListaInterface | any{  // Find retorna el primer resultado que encuentra (y cuando lo encuentra, detiene su recorrido por el arreglo). Como estamos filtrando por ID, está bien así
-    return this.autos.find((item:any)=>item.id == id)
+    //return this.filterList = this.http.get(this.baseURL + 'vehiculo/' +id)
+    return this.filterListObservable = this.http.get<RespuestaAPI>(this.baseURL+'vehiculo/'+id).pipe(map((auto) => auto.data))
+    //return this.autos.find((item:any)=>item.id == id)
   }
 
   addItem(item:ListaInterface):void{
@@ -59,16 +78,25 @@ export class AutosInfo {
   }
 
   getFilteredList(){
-    return this.filterListObservable.asObservable() 
+    return this.filterListObservable.asObservable()
+    //return this.filterListObservable.asObservable() 
   }
   searchItem(searchCr:any){
     console.log("desde la fx", searchCr)
-    this.filterList = this.autos.filter((product:any) => product.
-    name.toLowerCase().includes(searchCr.toLowerCase()))
-    return this.filterListObservable.next(this.filterList) 
+    
+    return this.autos = this.http.get<RespuestaAPI>(`http://epico.gob.ec/vehiculo/public/api/vehiculos/?filtro=${searchCr}`).pipe(map((auto) => auto.data))
+    //console.log(this.autos)
+
+    /* this.filterList = this.autos.data.filter((product:any) => product.
+    modelo.toLowerCase().includes(searchCr.toLowerCase()))
+    return this.filterList.next(this.filterList)  */
   }
 
-  
-
   constructor(private http:HttpClient) { }
+
+  ngOnInit(): void {
+    this.listaPrincipal = new BehaviorSubject(this.autos)
+    this.filterListObservable = new BehaviorSubject(this.autos)
+
+  }
 }
