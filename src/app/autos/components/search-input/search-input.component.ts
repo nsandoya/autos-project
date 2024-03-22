@@ -17,7 +17,10 @@ export class SearchInputComponent {
 
   ngOnInit(){
     //this.autos = this.listaService
-    this.autos = this.listaService.autos
+    /* this.listaService.listaPrincipal.subscribe((autos:any)=>{
+      this.autos = autos
+
+    }) */
     
   
    /*  this.listaService.getFilteredList().subscribe((autos)=>{
@@ -35,13 +38,22 @@ export class SearchInputComponent {
     //this.listaService.getItemById(this.searchCr)
   } */
   searchItem(){
-    this.listaService.searchItem(this.searchCr).subscribe((autos:any)=>{
+    this.listaService.getCompleteList(this.searchCr).subscribe((autos)=>{
       this.autos = autos
+      
+      console.log("Búsqueda 2.0",...this.autos)
+      console.log("Refresh",this.listaService.refreshList(this.autos))
+      
+    })
+
+  
+    /* this.listaService.searchItem(this.searchCr).subscribe((autos:any)=>{
+      this.autos = autos */
       
     console.log("search", ...this.autos)
     /* this.filterList = this.listaService.searchItem(this.searchCr);
     console.log("lista filtrada", this.filterList) */
-  })
+  //})
   
   /* getFilteredList(){
     this.listaService.getFilteredList()

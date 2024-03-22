@@ -12,15 +12,19 @@ import { SearchInputComponent } from '../search-input/search-input.component';
 
 
 // Existen eventos que ocurren durante (el ciclo de) la vida de un componente. En este caso, OnInit
-export class TablaPrincipalComponent implements OnInit {
+export class TablaPrincipalComponent /* implements OnInit */ {
   // Recibir info (listaGeneral) de un servicio (getCompleteList)
   autos: ListaInterface[] | any
   filterList:ListaInterface[] | any
   showImg = true;
   //stars:any = ""
   // Lo ponemos como 'private' porque así podremos acceder al servicio solo desde nuestro componente
-  constructor(private listaService: AutosInfo){}
-
+  constructor(private listaService: AutosInfo){
+    this.listaService.listaPrincipal$.subscribe((autos)=>{
+      this.autos = autos;  
+    })
+  }
+  
   // OnInit es un evento (que en este caso se implementa como un método) que se ejecuta cuando carga un componente
   ngOnInit(): void{
     // acá nos estamos suscribiendo al observable, y se actualizará c/ vez que haya cambios
@@ -38,10 +42,15 @@ export class TablaPrincipalComponent implements OnInit {
     this.listaService.getFilteredList().subscribe((autosFiltrados)=>{
       this.filterList = autosFiltrados
     }); */
+    /* this.listaService.listaPrincipal.subscribe(
+      (nuevosRegistros:any) => {
+        this.autos = nuevosRegistros;
+      }
+    ); */
     this.listaService.getCompleteList().subscribe((autos)=>{
       this.autos = autos;
-      
     })
+    
     /* this.listaService.filterListObservable.subscribe((autos:any)=>{
       this.autos = autos
     }) */

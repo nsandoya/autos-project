@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { ListaInterface, RespuestaAPI } from '../interfaces/lista-interface';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, Subject, map } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
@@ -35,8 +35,10 @@ export class AutosInfo implements OnInit{
   autos:ListaInterface[] | any = ""
   filterList: ListaInterface[] | any= "";
 
-  listaPrincipal: ListaInterface| any
-  filterListObservable: ListaInterface | any
+  listaPrincipal = new Subject();
+  listaPrincipal$ = this.listaPrincipal.asObservable()
+  /* listaPrincipal: ListaInterface| any
+  filterListObservable: ListaInterface | any */
 
   getCompleteList(filtro?:string, rows?:number, page?:number){
     let body = new HttpParams();
@@ -45,7 +47,7 @@ export class AutosInfo implements OnInit{
     body = page? body.set('page',page) : body
 
 
-    return this.listaPrincipal = this.http.get<RespuestaAPI>(this.baseURL + 'vehiculos/', {params: body}).pipe(
+    return this.listaPrincipal$ = this.http.get<RespuestaAPI>(this.baseURL + 'vehiculos/', {params: body}).pipe(
       map((autos) => autos.data)
     )
     // En caso de que no funcione lo de arriba, dejar esto de acá como activo
@@ -62,7 +64,7 @@ export class AutosInfo implements OnInit{
 
   getItemById(id:any): ListaInterface | any{  // Find retorna el primer resultado que encuentra (y cuando lo encuentra, detiene su recorrido por el arreglo). Como estamos filtrando por ID, está bien así
     //return this.filterList = this.http.get(this.baseURL + 'vehiculo/' +id)
-    return this.filterListObservable = this.http.get<RespuestaAPI>(this.baseURL+'vehiculo/'+id).pipe(map((auto) => auto.data))
+    return this.listaPrincipal$ = this.http.get<RespuestaAPI>(this.baseURL+'vehiculo/'+id).pipe(map((auto) => auto.data))
     //return this.autos.find((item:any)=>item.id == id)
   }
 
@@ -77,10 +79,13 @@ export class AutosInfo implements OnInit{
     this.listaPrincipal.next(this.autos)
   }
 
-  getFilteredList(){
+  refreshList(nuevosRegistros: any) {
+    return this.listaPrincipal.next(nuevosRegistros);
+  }
+  /* getFilteredList(){
     return this.filterListObservable.asObservable()
     //return this.filterListObservable.asObservable() 
-  }
+  } */
   searchItem(searchCr:any){
     console.log("desde la fx", searchCr)
     
@@ -95,8 +100,8 @@ export class AutosInfo implements OnInit{
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
-    this.listaPrincipal = new BehaviorSubject(this.autos)
-    this.filterListObservable = new BehaviorSubject(this.autos)
+    //this.listaPrincipal = new BehaviorSubject(this.autos)
+    //this.filterListObservable = new BehaviorSubject(this.autos)
 
   }
 }
