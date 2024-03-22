@@ -97,7 +97,11 @@ export class AddItemComponent {
     console.log("Nuevo auto",this.newItemForm.value)
     this.listaService.addItem(this.newItemForm.value).subscribe((auto:any)=>{
       console.log("Nuevo auto",auto)
+      
+    })
+    this.listaService.getCompleteList().subscribe((autos)=>{
 
+      this.router.navigate(['/autos/'+this.newItemForm.value.codigo])
     })
   }
     /* this.listaService.addItem({
@@ -105,5 +109,4 @@ export class AddItemComponent {
     }) */
     /* id: this.listaService.autos.length + 1, */
 
-    //this.router.navigate(['/autos/'+this.newItemForm.value.codigo])
 }

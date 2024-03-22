@@ -34,8 +34,8 @@
 <!-- 1 -->
 <ng-template #main>
   <div class="card text-center ">
-    <h2 class="card-title my-5">{{  auto.modelo }}</h2>
-    <img src="{{auto.foto}}" class="card-img-top" style="height: 400px;max-height: 150px; object-fit: cover;" alt="...">
+    <h2 class="card-title my-2">{{  auto.modelo }}</h2>
+    <img src="{{auto.foto}}" class="card-img-top mx-auto" style="width:500px;height: 400px;max-height: 400px; object-fit: cover;" alt="...">
     <span class="w-100">
       <i *ngFor="let star of generateStars(auto.calificacion)" class="bi bi-star-fill" style="color: #007bff;"></i>
     </span>
@@ -52,14 +52,14 @@
     </div>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
-        <p class="mb-0">{{ auto.precio | currency }}</p>
         <span class="text-black-50">Precio (incluye IVA)</span>
+        <p class="mb-0">{{ auto.precio | currency }}</p>
         <hr>
-        <p class="mb-0">{{ auto.anio }}</p>
         <span class="text-black-50">Año de lanzamiento</span>
+        <p class="mb-0">{{ auto.anio }}</p>
         <hr>
-        <p class="mb-0">{{ auto.kilometraje }}</p>
         <span class="text-black-50">KM</span>
+        <p class="mb-0">{{ auto.kilometraje }}</p>
         <hr>
       </blockquote>
     </div>

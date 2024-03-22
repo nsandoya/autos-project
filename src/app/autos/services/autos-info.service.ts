@@ -77,9 +77,9 @@ export class AutosInfo implements OnInit{
   }
 
   addItem(item:ListaInterface){
+   // this.listaPrincipal.next(this.autos) 
     return this.http.post<ListaInterface>(this.baseURL+'vehiculo/', item)
-    /* this.autos.push(item)
-    this.listaPrincipal.next(this.autos) */
+    /* this.autos.push(item)*/
 
   }
 
