@@ -15,13 +15,13 @@
     <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
         <a class="nav-link active text-primary" aria-current="true" (click)="activeTab=main" [ngClass]="
-          {'active':activeTab==main, 'text-active':activeTab==main}">Overview</a>
+          {'active text-primary':activeTab==main, 'text-primary':activeTab==main, 'text-black-50':activeTab!=main}">Overview</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-black-50" (click)="activeTab=detail1" [ngClass]="{'active':activeTab==detail1, 'text-active':activeTab==detail1}" >Detalles</a>
+        <a class="nav-link text-black-50" (click)="activeTab=detail1" [ngClass]="{'active':activeTab==detail1, 'text-primary':activeTab==detail1}" >Detalles</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link text-black-50" (click)="activeTab=detail2" [ngClass]="{'active':activeTab==detail2, 'text-active':activeTab==detail2}">Agendar prueba</a>
+        <a class="nav-link text-black-50" (click)="activeTab=detail2" [ngClass]="{'active':activeTab==detail2, 'text-primary':activeTab==detail2}">Agendar prueba</a>
       </li>
     </ul>
   </div>
@@ -33,37 +33,64 @@
 <!-- Ng templates -->
 <!-- 1 -->
 <ng-template #main>
-  <div class="card text-center">
-
-    <h5 class="card-title">{{  auto.modelo }}</h5>
-    <img src="{{auto.foto}}" class="card-img-top" style="height: 400px;max-height: 400px; object-fit: cover;" alt="...">
+  <div class="card text-center ">
+    <h2 class="card-title my-5">{{  auto.modelo }}</h2>
+    <img src="{{auto.foto}}" class="card-img-top" style="height: 400px;max-height: 150px; object-fit: cover;" alt="...">
     <span class="w-100">
       <i *ngFor="let star of generateStars(auto.calificacion)" class="bi bi-star-fill" style="color: #007bff;"></i>
     </span>
-    <p class="card-text">Aerodinámico, veloz, y del tamaño de tu bolsillo. Un auto pensado para durar, y perdurar en tus recuerdos en forma de experiencias únicas</p>
-    <a class="btn btn-primary disabled">Comprar</a>
+    <p class="card-text w-50 my-5" style="margin: 0 auto">Aerodinámico, veloz, y del tamaño de tu bolsillo. Un auto pensado para durar, y perdurar en tus recuerdos en forma de experiencias únicas</p>
+    <a class="btn btn-primary disabled w-25 mb-3" style="margin: 0 auto">Comprar</a>
   </div>
 </ng-template>
 <!-- 2 -->
 <ng-template #detail1>
   <div class="card">
     <div class="card-header">
+      <span class="text-black-50">{{ auto.marca }}</span>
       {{ auto.modelo }}
     </div>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
-        <p>{{ auto.precio | currency }}</p>
-        <footer class="blockquote-footer"><cite title="Source Title">Precio (incluye IVA)</cite></footer>
+        <p class="mb-0">{{ auto.precio | currency }}</p>
+        <span class="text-black-50">Precio (incluye IVA)</span>
+        <hr>
+        <p class="mb-0">{{ auto.anio }}</p>
+        <span class="text-black-50">Año de lanzamiento</span>
+        <hr>
+        <p class="mb-0">{{ auto.kilometraje }}</p>
+        <span class="text-black-50">KM</span>
+        <hr>
       </blockquote>
+    </div>
+  </div>
+</ng-template>
+<!-- 3 -->
+<ng-template #detail2>
+  <div class="card">
+    <div class="card-header">
+      
+    </div>
+    <div class="card-header">
+      <span class="text-black-50">{{ auto.marca }}</span>
+      {{ auto.modelo }}
+    </div>
+    <div class="card-body">
+      <blockquote>
+        <span class="text-black-50">Agente de ventas</span>
+        <p>{{ auto.usuario }}</p>
+        <button class="btn btn-primary disabled">Agendar</button>
+      </blockquote>
+      
     </div>
   </div>
 </ng-template>
 
 <!-- Mensaje de error -->
-<!-- <div class="container-fluid justify-content-center text-center" style="margin: auto 0" *ngIf="!auto">
+<div class="container-fluid justify-content-center text-center" style="margin: auto 0" *ngIf="!auto">
   <div class="spinner-border align-self-center" style="width: 3rem; height: 3rem; " role="status">
   </div>
-</div> -->
+</div>
 <!-- <span class="fs-3">Cargando...</span> -->
 
  <!--  <h1 class="fs-1"><i class="bi bi-bug-fill"></i> </h1>
