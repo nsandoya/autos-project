@@ -37,6 +37,9 @@ export class AutosInfo implements OnInit{
 
   listaPrincipal = new Subject();
   listaPrincipal$ = this.listaPrincipal.asObservable()
+
+  autoEditar = new Subject();
+  autoEditar$ = this.autoEditar.asObservable()
   /* listaPrincipal: ListaInterface| any
   filterListObservable: ListaInterface | any */
 
@@ -67,6 +70,10 @@ export class AutosInfo implements OnInit{
     return this.listaPrincipal$ = this.http.get<RespuestaAPI>(this.baseURL+'vehiculo/'+id).pipe(map((auto) => auto.data))
     //return this.autos.find((item:any)=>item.id == id)
   }
+  getCarById(id:any): ListaInterface | any{  
+    return this.autoEditar$ = this.http.get<RespuestaAPI>(this.baseURL+'vehiculo/'+id).pipe(map((auto) => auto.data))
+    //return this.autos.find((item:any)=>item.id == id)
+  }
 
   addItem(item:ListaInterface):void{
     this.autos.push(item)
@@ -74,14 +81,35 @@ export class AutosInfo implements OnInit{
 
   }
 
-  deleteItem(itemID:any):void{
-    this.autos = this.autos.filter((item:any) => item.id !== itemID)
-    this.listaPrincipal.next(this.autos)
+  deleteItem(itemID:any){
+     this.http.delete(this.baseURL+'vehiculo/'+itemID).subscribe(
+      response => {
+        console.log("borrado", itemID);
+        // Aquí puedes actualizar tu lista de autos si es necesario
+      },
+      error => {
+        console.log("Error al borrar el auto:", error);
+      }
+    );
+    this.getCompleteList()
+    /* this.autos = this.autos.filter((item:any) => item.id !== itemID)
+    this.listaPrincipal.next(this.autos) */
   }
 
-  refreshList(nuevosRegistros: any) {
+  refreshList(nuevosRegistros?: any) {
     return this.listaPrincipal.next(nuevosRegistros);
   }
+
+  carToEdit(auto:string){
+    console.log("id auto recibida", auto)
+    this.getCarById(auto)
+    this.autoEditar.next(auto)
+
+  }
+
+  /* refreshCarToEdit(auto:string) {
+    return this.autoEditar.next(auto);
+  } */
   /* getFilteredList(){
     return this.filterListObservable.asObservable()
     //return this.filterListObservable.asObservable() 

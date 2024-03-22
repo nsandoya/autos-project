@@ -1,11 +1,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<table class="table table-striped">
+<table class="table table-striped ms-3">
     <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Auto</th>
         <th scope="col" *ngIf="showImg">Imagen</th>
+        <th scope="col">Precio</th>
         <th scope="col">Calificación</th>
         <th scope="col">Acciones</th>
       </tr>
@@ -15,14 +16,17 @@
         <th scope="row">{{ auto.codigo }}</th>
         <td>{{ auto.modelo }}</td>
         <td *ngIf="showImg"><img src="{{ auto.foto }}" alt="{{ auto.modelo }}" class="img-table"></td>
+        <td>{{ auto.precio | currency }}</td>
         <td *ngIf="auto.calificacion">
             <i *ngFor="let star of generateStars(auto.calificacion)" class="bi bi-star-fill" style="color: #007bff;"></i>
         </td>
         <td >
           <a [routerLink]="['/autos/' + auto.codigo]"><button class="btn btn-outline-primary mx-2"><i class="bi bi-list"></i></button></a>
-          <a ><button class="btn btn-primary mx-2"><i class="bi bi-pencil-square "></i></button></a>
+          <a (click)="setCarToEdit(auto.codigo) "><button class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#editModal"><i class="bi bi-pencil-square "></i></button></a>
+          <app-editar-auto></app-editar-auto>
+          <!-- <a ><button class="btn btn-primary mx-2"><i class="bi bi-pencil-square "></i></button></a> -->
           <a ><button class="btn btn-primary mx-2" (click)="toggleImg()"><i class="bi bi-app-indicator"></i></button></a>
-          <!-- <a ><button class="btn btn-danger mx-2" (click)="deleteItem(auto.id)"><i class="bi bi-x-lg"></i></button></a> -->
+          <a ><button class="btn btn-danger mx-2" (click)="deleteCar(auto.codigo)"><i class="bi bi-x-lg"></i></button></a>
         </td>
       </tr>
       

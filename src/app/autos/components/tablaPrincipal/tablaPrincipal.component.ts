@@ -17,6 +17,9 @@ export class TablaPrincipalComponent /* implements OnInit */ {
   autos: ListaInterface[] | any
   filterList:ListaInterface[] | any
   showImg = true;
+
+  autoEditar:string | any 
+  autoEditarContent:ListaInterface | undefined
   //stars:any = ""
   // Lo ponemos como 'private' porque así podremos acceder al servicio solo desde nuestro componente
   constructor(private listaService: AutosInfo){
@@ -70,22 +73,41 @@ export class TablaPrincipalComponent /* implements OnInit */ {
     this.listaService.getCompleteList().subscribe((autos)=>{
       this.filterList = autos
       console.log(this.autos.data)
-
     })
-    
   }
 
- /*  deleteItem(id:any){
-    this.listaService.deleteItem(id);
-    this.listaService.getCompleteList().subscribe((autos)=>{
-      this.filterList = autos
+  deleteCar(id:string){
+    console.log("id a borrar", id)
+    this.listaService.deleteItem(id)/* .subscribe((respuesta)=>{
+      if(respuesta.mensaje=="Vehiculo eliminado con exito") console.log("borrado!")
+    }) */
+  }
+
+
+  setCarToEdit(auto:string){
+    console.log("tabla comp, esta es la fx")
+
+    this.listaService.carToEdit(auto)
+    this.listaService.autoEditar$.subscribe((auto:any)=>{
+      this.autoEditar = auto
     })
-    console.log(this.autos)
-  } */
+
+    console.log("id a usar", this.autoEditar)
+  //if(!this.autoEditar) console.log("no hay id")
+
+  //this.getCarToEditData(this.autoEditar)
+    /* this.listaService.autoEditar$.subscribe((auto:any) => {
+    }) */
+  }
   
-  /* searchItem(){
-    console.log("lista filtrada, tabla", this.filterList)
-  } */
-  //console.log("autos", this.autos)
-  /* this.filterList = this.autos.filter((product:any) => product.modelo.toLowerCase().includes(this.searchCr.toLowerCase())) */
+  getCarToEditData(auto:string){
+    /* return this.listaService.getCarById(auto).subscribe((autoContent:ListaInterface)=>{
+      this.autoEditarContent = autoContent
+      console.log("y...",this.autoEditarContent)
+    }) */
+    return this.listaService.autoEditar$.subscribe((autoInfo: any) => {
+      this.autoEditarContent = autoInfo
+      console.log("content", this.autoEditarContent)
+    })
+  }
 }
