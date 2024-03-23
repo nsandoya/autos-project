@@ -81,6 +81,7 @@ export class TablaPrincipalComponent /* implements OnInit */ {
       this.autos = respuesta.data;
       this.rows = respuesta.rows;
       this.pages = respuesta.pages;
+      this.page = 1
       this.pagination(this.pages)
       console.log("Desde cambio de rows",this.rows, this.page, this.pages)
       console.log("lista a iterar", this.listaDePaginas)
