@@ -33,7 +33,7 @@ export class SearchInputComponent {
   }
 
   returnAllItems(){
-    this.listaService.getCompleteList().subscribe((autos)=>{
+    this.listaService.getCompleteList("", this.listaService.rows, 1).subscribe((autos)=>{
       this.autos = autos
       
       //console.log("Búsqueda 2.0",...this.autos)

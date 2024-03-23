@@ -53,6 +53,7 @@ export class AutosInfo implements OnInit{
     body = rows? body.set('rows', rows) : body;
     body = page? body.set('page',page) : body
 
+
     // Aquí estaba el problema
     return this.http.get<RespuestaAPI>(this.baseURL + 'vehiculos/', {params: body}).pipe(
       map((autos) => autos.data)
@@ -104,7 +105,17 @@ export class AutosInfo implements OnInit{
   refreshList(nuevosRegistros?: any) {
     /* return this.listaPrincipal$
     return this.listaPrincipal$ = nuevosRegistros */
-    return this.listaPrincipal.next(nuevosRegistros);
+    
+    return this.getPagesnRows("", this.rows, 1).subscribe((respuesta)=>{
+      this.rows = respuesta.rows;
+      this.pages = respuesta.pages;
+      this.page = 1
+      return this.listaPrincipal.next(nuevosRegistros)
+      /* this.pagination(this.pages)
+      console.log("Desde cambio de rows",this.rows, this.page, this.pages)
+      console.log("lista a iterar", this.listaDePaginas) */
+    })
+    //return this.listaPrincipal.next(nuevosRegistros);
   }
 
 /*   carToEdit(auto:string){
