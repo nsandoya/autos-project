@@ -114,6 +114,14 @@ export class TablaPrincipalComponent /* implements OnInit */ {
     console.log(this.page)
   }
   prevPage(){
+    if(this.page > 1){
+      this.page = this.page - 1;
+      this.cambiarPagina(this.page);
+      //this.getAllWithParams()
+    }
+    console.log(this.page);
+  }
+  /* prevPage(){
     if(this.page > this.pages){
       this.page = this.page - 1
       this.cambiarPagina(this.page)
@@ -122,7 +130,7 @@ export class TablaPrincipalComponent /* implements OnInit */ {
     }
     console.log(this.page)
 
-  }
+  } */
   
   toggleImg(){
     this.showImg = !this.showImg
