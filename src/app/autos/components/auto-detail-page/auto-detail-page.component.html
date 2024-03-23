@@ -35,7 +35,7 @@
 <ng-template #main>
   <div class="card text-center ">
     <h2 class="card-title my-2">{{  auto.modelo }}</h2>
-    <img src="{{auto.foto}}" class="card-img-top mx-auto my-3" style="width:auto;height: 400px;max-height: 400px; object-fit: cover;" alt="...">
+    <img src="{{auto.foto}}" class="card-img-top mx-auto my-3" style="width:auto;height: auto;max-height: 400px; object-fit: cover;" alt="...">
     <span class="w-100">
       <i *ngFor="let star of generateStars(auto.calificacion)" class="bi bi-star-fill" style="color: #007bff;"></i>
     </span>
