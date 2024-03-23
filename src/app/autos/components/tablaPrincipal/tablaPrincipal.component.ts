@@ -72,14 +72,18 @@ export class TablaPrincipalComponent /* implements OnInit */ {
     /* this.listaService.getCompleteList("", this.rows, this.pages).subscribe((autos:any)=>{
       this.autos = autos;
     }) */
-    this.listaService.getCompleteList("", this.rows, this.pages).subscribe((autos:any)=>{
+    this.listaService.getCompleteList("",this.rows,1).subscribe((autos:any)=>{
       this.autos = autos;
+      console.log("nuevos autos", this.autos)
     })
   }
 
-  cambiarPagina(pages:number){
-    this.pages = pages
-    this.getAllWithParams()
+  cambiarPagina(page:number){
+    this.page = page
+    //this.getAllWithParams()
+    this.listaService.getCompleteList("", this.rows, this.page).subscribe((autos)=>{
+      this.autos = autos
+    })
   }
 
   pagination(pages:number){
