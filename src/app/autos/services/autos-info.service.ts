@@ -35,14 +35,15 @@ export class AutosInfo implements OnInit{
   baseURL = "https://epico.gob.ec/vehiculo/public/api/"
   autos:ListaInterface[] | any = ""
   filterList: ListaInterface[] | any= "";
+  
+// Paginación
+  rows:number = 10;
 
   listaPrincipal = new Subject();
   listaPrincipal$ = this.listaPrincipal.asObservable()
 
   autoEditar = new Subject();
   autoEditar$ = this.autoEditar.asObservable()
-  /* listaPrincipal: ListaInterface| any
-  filterListObservable: ListaInterface | any */
 
   getCompleteList(filtro?:string, rows?:number, page?:number){
     let body = new HttpParams();
@@ -54,32 +55,17 @@ export class AutosInfo implements OnInit{
     return this.http.get<RespuestaAPI>(this.baseURL + 'vehiculos/', {params: body}).pipe(
       map((autos) => autos.data)
     )
-    // En caso de que no funcione lo de arriba, dejar esto de acá como activo
-    /* return this.listaPrincipal = this.http.get<RespuestaAPI>(this.baseURL + 'vehiculos/').pipe(
-      map((autos) => autos.data)
-    ) */
-    /* .pipe(
-      map(autos => autos.data)
-      //Object.keys(datos).map((key) => datos[key])
-    ) */
-    //return this.listaPrincipal.asObservable()
   }
   
 
   getItemById(id:any): ListaInterface | any{  // Find retorna el primer resultado que encuentra (y cuando lo encuentra, detiene su recorrido por el arreglo). Como estamos filtrando por ID, está bien así
-    //return this.filterList = this.http.get(this.baseURL + 'vehiculo/' +id)
     return this.http.get<RespuestaAPI>(this.baseURL+'vehiculo/'+id).pipe(map((auto) => auto.data))
     //return this.autos.find((item:any)=>item.id == id)
   }
-  /* getCarById(id:any): ListaInterface | any{  
-    return this.autoEditar$ = this.http.get<RespuestaAPI>(this.baseURL+'vehiculo/'+id).pipe(map((auto) => auto.data))
-    //return this.autos.find((item:any)=>item.id == id)
-  } */
+
 
   addItem(item:ListaInterface){
-   // this.listaPrincipal.next(this.autos) 
     return this.http.post<ListaInterface>(this.baseURL+'vehiculo/', item)
-    /* this.autos.push(item)*/
 
   }
 
@@ -96,20 +82,7 @@ export class AutosInfo implements OnInit{
         alert("Error. Inténtalo más tarde")
       }
     }) // Esto de por si es un observable
-     /* return this.http.delete(this.baseURL+'vehiculo/'+itemID).subscribe(
-      (response) => {
-        console.log("borrado", itemID);
-        //this.router.navigate(['/autos/'])
-
-        this.getCompleteList()
-        // Aquí puedes actualizar tu lista de autos si es necesario
-      },
-      error => {
-        console.log("Error al borrar el auto:", error);
-      }
-    ); */
-    /* this.autos = this.autos.filter((item:any) => item.id !== itemID)
-    this.listaPrincipal.next(this.autos) */
+    
   }
 
   refreshList(nuevosRegistros?: any) {
@@ -144,11 +117,6 @@ export class AutosInfo implements OnInit{
     console.log("desde la fx", searchCr)
     
     return this.autos = this.http.get<RespuestaAPI>(`http://epico.gob.ec/vehiculo/public/api/vehiculos/?filtro=${searchCr}`).pipe(map((auto) => auto.data))
-    //console.log(this.autos)
-
-    /* this.filterList = this.autos.data.filter((product:any) => product.
-    modelo.toLowerCase().includes(searchCr.toLowerCase()))
-    return this.filterList.next(this.filterList)  */
   }
 
   generateStars(number:number){
@@ -163,8 +131,6 @@ export class AutosInfo implements OnInit{
   constructor(private http:HttpClient, private router:Router) { }
 
   ngOnInit(): void {
-    //this.listaPrincipal = new BehaviorSubject(this.autos)
-    //this.filterListObservable = new BehaviorSubject(this.autos)
 
   }
 }

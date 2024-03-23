@@ -11,6 +11,14 @@
           <th scope="col" *ngIf="showImg">Imagen</th>
           <th scope="col">Calificación</th>
           <th scope="col">Acciones</th>
+          <th>
+            <select name="" class="form-control" [(ngModel)]="rows" (change)="getAllWithParams()">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+            </select>
+          </th>
         </tr>
       </thead>
       <tbody>

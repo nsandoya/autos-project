@@ -20,6 +20,10 @@ export class TablaPrincipalComponent /* implements OnInit */ {
 
   autoEditar:string | any 
   autoEditarContent:any
+
+  // Paginación
+  rows:number = 10;
+  pages:number = 1
   //stars:any = ""
   // Lo ponemos como 'private' porque así podremos acceder al servicio solo desde nuestro componente
   constructor(private listaService: AutosInfo){
@@ -34,6 +38,13 @@ export class TablaPrincipalComponent /* implements OnInit */ {
   ngOnInit(): void{
     
     this.listaService.getCompleteList().subscribe((autos)=>{
+      this.autos = autos;
+      console.log("Autos despues de detail", this.autos)
+    })
+  }
+
+  getAllWithParams(){
+    this.listaService.getCompleteList("", this.rows, this.pages).subscribe((autos)=>{
       this.autos = autos;
       console.log("Autos despues de detail", this.autos)
     })
