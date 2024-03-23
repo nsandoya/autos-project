@@ -49,14 +49,14 @@ export class TablaPrincipalComponent /* implements OnInit */ {
     body =  body.set('filtro',"");
     body =  body.set('rows', this.rows);
     body =  body.set('page',this.page) */
-    this.listaService.getCompleteList("", this.rows, this.pages).subscribe((autos)=>{
+    /* this.listaService.getCompleteList("", this.rows, this.pages).subscribe((autos)=>{
 
       this.autos = autos;
       //console.log("Autos despues de detail", this.autos)
-    })
+    }) */
     
     this.listaService.getPagesnRows("", this.rows, 1).subscribe((respuesta)=>{
-      //this.autos = respuesta.data;
+      this.autos = respuesta.data;
       this.rows = respuesta.rows;
       this.pages = respuesta.pages;
       this.pagination(this.pages)
@@ -72,10 +72,20 @@ export class TablaPrincipalComponent /* implements OnInit */ {
     /* this.listaService.getCompleteList("", this.rows, this.pages).subscribe((autos:any)=>{
       this.autos = autos;
     }) */
-    this.listaService.getCompleteList("",this.rows,1).subscribe((autos:any)=>{
+    /* this.listaService.getCompleteList("",this.rows,1).subscribe((autos:any)=>{
       this.autos = autos;
       console.log("nuevos autos", this.autos)
+    }) */
+
+    this.listaService.getPagesnRows("", this.rows, 1).subscribe((respuesta)=>{
+      this.autos = respuesta.data;
+      this.rows = respuesta.rows;
+      this.pages = respuesta.pages;
+      this.pagination(this.pages)
+      console.log("Desde cambio de rows",this.rows, this.page, this.pages)
+      console.log("lista a iterar", this.listaDePaginas)
     })
+
   }
 
   cambiarPagina(page:number){
