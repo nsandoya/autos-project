@@ -82,8 +82,8 @@
                   <a class="page-link" (click)="prevPage()">Previous</a>
                 </li>
 
-                <li *ngFor="let pag of pages" class="page-item" [ngClass]="{'active':true}">
-                  <a [(ngModel)]="page" class="page-link" (click)="cambiarPagina(pag)">{{page}}</a>
+                <li *ngFor="let pag of listaDePaginas" class="page-item" [ngClass]="{'active':pag == page}">
+                  <a [(ngModel)]="page" class="page-link" (click)="cambiarPagina(pag)">{{pag}}</a>
                 </li>
                 
                 <li class="page-item">

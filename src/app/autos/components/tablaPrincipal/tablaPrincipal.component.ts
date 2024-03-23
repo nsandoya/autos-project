@@ -68,9 +68,9 @@ export class TablaPrincipalComponent /* implements OnInit */ {
     this.getAllWithParams()
   }
 
-  listaDePaginas:Array<number> = []
+  listaDePaginas:Array<number> = [1,2]
   pagination(pages:number){
-    this.listaDePaginas = []
+    this.listaDePaginas = [1,2]
     for(let i=1; i <= pages; i++){
       this.listaDePaginas.push(i)
     }
