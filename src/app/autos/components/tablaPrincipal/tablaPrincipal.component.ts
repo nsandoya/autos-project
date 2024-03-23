@@ -30,7 +30,7 @@ export class TablaPrincipalComponent /* implements OnInit */ {
   
   // OnInit es un evento (que en este caso se implementa como un método) que se ejecuta cuando carga un componente
   ngOnInit(): void{
-    
+    this.autos = ""
     this.listaService.getCompleteList().subscribe((autos)=>{
       this.autos = autos;
       console.log("Autos despues de detail", this.autos)
