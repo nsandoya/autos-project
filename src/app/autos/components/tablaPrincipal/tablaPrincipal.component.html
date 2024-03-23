@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<div *ngIf="autos">
+<div *ngIf="autos" class="card mx-auto">
 
-  <table  class="table table-striped ms-3">
+  <table  class="table table-striped ms-3 ">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -14,13 +14,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let auto of autos">
-          <th scope="row">{{ auto.codigo }}</th>
-          <td>{{ auto.marca }}</td>
-          <td>{{ auto.modelo }}</td>
-          <td>{{ auto.precio | currency }}</td>
-          <td *ngIf="showImg"><img src="{{ auto.foto }}" alt="{{ auto.modelo }}" class="img-table"></td>
-          <td *ngIf="auto.calificacion">
+        <tr *ngFor="let auto of autos" >
+          <th scope="row" class="text-black-50">{{ auto.codigo }}</th>
+          <td class="fs-6">{{ auto.marca }}</td>
+          <td class="fs-6">{{ auto.modelo }}</td>
+          <td class="fs-6">{{ auto.precio | currency }}</td>
+          <td *ngIf="showImg" class="fs-6"><img src="{{ auto.foto }}" alt="{{ auto.modelo }}" class="img-table"></td>
+          <td *ngIf="auto.calificacion" class="fs-6">
               <i *ngFor="let star of generateStars(auto.calificacion)" class="bi bi-star-fill" style="color: #007bff;"></i>
           </td>
           <td>
@@ -34,8 +34,8 @@
             <!-- <a ><button class="btn btn-primary mx-2"><i class="bi bi-pencil-square "></i></button></a> -->
             <a ><button class="btn btn-primary mx-2" (click)="toggleImg()"><i class="bi bi-app-indicator" ></i></button></a>
   
-            <a (click)="nuevoAutoEditar(auto.codigo)"><button class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="bi bi-x-lg" ></i></button></a>
-            <app-borrar-auto></app-borrar-auto>
+            <a (click)="borrarAuto(auto.codigo)"><button class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="bi bi-x-lg" ></i></button></a>
+            <!-- <app-borrar-auto></app-borrar-auto> (click)="nuevoAutoEditar(auto.codigo)" -->
             
             <!-- <a ><button class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-x-lg" ></i></button></a>
   

@@ -84,7 +84,18 @@ export class AutosInfo implements OnInit{
   }
 
   deleteItem(itemID:any){
-    return this.http.delete(this.baseURL+'vehiculo/'+itemID) // Esto de por si es un observable
+    return this.http.delete(this.baseURL+'vehiculo/'+itemID).subscribe((respuesta:any)=>{
+      console.log("respuesta borrado", respuesta)
+      if(respuesta.codigo==1){
+        alert("El auto fue eliminado")
+        this.getCompleteList().subscribe((autos)=>{
+          this.listaPrincipal.next(autos)
+        })
+        //this.refreshList(this.getCompleteList())
+      }else{
+        alert("Error. Inténtalo más tarde")
+      }
+    }) // Esto de por si es un observable
      /* return this.http.delete(this.baseURL+'vehiculo/'+itemID).subscribe(
       (response) => {
         console.log("borrado", itemID);
