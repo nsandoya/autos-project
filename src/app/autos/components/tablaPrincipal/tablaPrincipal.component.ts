@@ -46,8 +46,21 @@ export class TablaPrincipalComponent /* implements OnInit */ {
   getAllWithParams(){
     this.listaService.getCompleteList("", this.rows, this.pages).subscribe((autos)=>{
       this.autos = autos;
-      console.log("Autos despues de detail", this.autos)
+      //this.pages =
     })
+  }
+
+  cambiarPagina(pages:number){
+    this.pages = pages
+    this.getAllWithParams()
+  }
+
+  listaDePaginas:Array<number> = []
+  pagination(pages:number){
+    this.listaDePaginas = []
+    for(let i=1; i <= pages; i++){
+      this.listaDePaginas.push(1)
+    }
   }
   
   toggleImg(){

@@ -3,3 +3,11 @@
     height: 100px; 
     object-fit: cover;
 }
+
+*{
+    font-family: "Poppins", sans-serif !important;
+}
+
+.light-text-table{
+    color: #24272b !important;
+}

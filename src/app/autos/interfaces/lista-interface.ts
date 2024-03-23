@@ -20,7 +20,7 @@ export interface ListaInterface {
 export interface RespuestaAPI {
     codigo: number;
     mensaje: string;
-    data: {
+    data:Array<ListaInterface> /* {
       id: number;
       codigo: string;
       marca: string;
@@ -34,7 +34,10 @@ export interface RespuestaAPI {
       usuario_mod: string;
       kilometraje: number;
       precio: string;
-    };
+    } */;
+    rows?:number;
+    pages?:number;
+    records?:number;
     error: any;
     warning: any;
   }

@@ -35,9 +35,10 @@ export class AutosInfo implements OnInit{
   baseURL = "https://epico.gob.ec/vehiculo/public/api/"
   autos:ListaInterface[] | any = ""
   filterList: ListaInterface[] | any= "";
-  
+
 // Paginación
-  rows:number = 10;
+  rows:number | undefined = 10;
+  pages:number | undefined = 1
 
   listaPrincipal = new Subject();
   listaPrincipal$ = this.listaPrincipal.asObservable()
@@ -63,6 +64,12 @@ export class AutosInfo implements OnInit{
     //return this.autos.find((item:any)=>item.id == id)
   }
 
+  getPagesnRows(){
+    return this.http.get<RespuestaAPI>(this.baseURL+'vehiculos/').subscribe((respuesta)=>{
+      this.rows = respuesta.rows;
+      this.pages = respuesta.pages;
+    })
+  }
 
   addItem(item:ListaInterface){
     return this.http.post<ListaInterface>(this.baseURL+'vehiculo/', item)

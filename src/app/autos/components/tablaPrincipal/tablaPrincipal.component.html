@@ -10,9 +10,9 @@
           <th scope="col">Precio</th>
           <th scope="col" *ngIf="showImg">Imagen</th>
           <th scope="col">Calificación</th>
-          <th scope="col">Acciones</th>
-          <th>
-            <select name="" class="form-control" [(ngModel)]="rows" (change)="getAllWithParams()">
+          <th scope="col-3">Acciones</th>
+          <th class="row-cols-4">
+            <select name="" class="form-control me-3 col" style="width:45px" [(ngModel)]="rows" (change)="getAllWithParams()">
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="25">25</option>
@@ -72,6 +72,25 @@
         </tr>
         
       </tbody>
+      <tfoot>
+        <tr >
+          <td class="">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination  text-end  justify-content-end">
+                <li class="page-item">
+                  <a class="page-link">Previous</a>
+                </li>
+
+                <li *ngFor="let pag of listaDePaginas" class="page-item"><a class="page-link" (click)="cambiarPagina(pag)">1</a></li>
+                
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+          </td>
+        </tr>
+      </tfoot>
     </table>
 </div>
 
