@@ -71,11 +71,13 @@ export class AutosInfo implements OnInit{
     body = rows? body.set('rows', rows) : body;
     body = page? body.set('page',page) : body
 
-    return this.http.get<RespuestaAPI>(this.baseURL+'vehiculos/', {params: body}).subscribe((respuesta)=>{
+    return this.http.get<RespuestaAPI>(this.baseURL+'vehiculos/', {params: body})/* .subscribe((respuesta)=>{
       this.autos = respuesta.data;
       this.rows = respuesta.rows;
       this.pages = respuesta.pages;
-    })
+
+      console.log("paginas, desde service", this.pages)
+    }) */
   }
 
   addItem(item:ListaInterface){

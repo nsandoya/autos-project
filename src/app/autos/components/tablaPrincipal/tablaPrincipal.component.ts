@@ -27,6 +27,8 @@ export class TablaPrincipalComponent /* implements OnInit */ {
   rows:any= 0;
   pages:any = 0
   page:any = 0
+  listaDePaginas:Array<number> = []
+
   //stars:any = ""
   // Lo ponemos como 'private' porque así podremos acceder al servicio solo desde nuestro componente
   constructor(private listaService: AutosInfo){
@@ -43,21 +45,33 @@ export class TablaPrincipalComponent /* implements OnInit */ {
     this.pages = this.listaService.pages
     this.page = this.listaService.page
     
-    let body = new HttpParams();
+   /*  let body = new HttpParams();
     body =  body.set('filtro',"");
     body =  body.set('rows', this.rows);
-    body =  body.set('page',this.page)
+    body =  body.set('page',this.page) */
     this.listaService.getCompleteList("", this.rows, this.pages).subscribe((autos)=>{
 
       this.autos = autos;
       //console.log("Autos despues de detail", this.autos)
+    })
+    
+    this.listaService.getPagesnRows("", this.rows, 1).subscribe((respuesta)=>{
+      //this.autos = respuesta.data;
+      this.rows = respuesta.rows;
+      this.pages = respuesta.pages;
+      this.pagination(this.pages)
       console.log("Desde tabla, oninit",this.rows, this.page, this.pages)
+      console.log("lista a iterar", this.listaDePaginas)
     })
 
+    //console.log("total de paginas", this.pages)
   }
 
   getAllWithParams(){
     // Corregir getPagesNRows
+    /* this.listaService.getCompleteList("", this.rows, this.pages).subscribe((autos:any)=>{
+      this.autos = autos;
+    }) */
     this.listaService.getCompleteList("", this.rows, this.pages).subscribe((autos:any)=>{
       this.autos = autos;
     })
@@ -68,10 +82,11 @@ export class TablaPrincipalComponent /* implements OnInit */ {
     this.getAllWithParams()
   }
 
-  listaDePaginas:Array<number> = [1,2]
   pagination(pages:number){
-    this.listaDePaginas = [1,2]
+    console.log("desde pagination", this.pages)
+    this.listaDePaginas= []
     for(let i=1; i <= pages; i++){
+      console.log("pagina..", i)
       this.listaDePaginas.push(i)
     }
   }
@@ -79,13 +94,13 @@ export class TablaPrincipalComponent /* implements OnInit */ {
   nextPage(){
     console.log(this.pages)
     /* if(this.page < this.pages){
-      this.page++
+      this.page = this.page + 1
       this.getAllWithParams()
     } */
   }
   prevPage(){
     /* if(this.page > this.pages){
-      this.page--
+      this.page = this.page - 1
       this.getAllWithParams()
     } */
     console.log(this.pages)
