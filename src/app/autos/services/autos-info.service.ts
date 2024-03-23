@@ -37,8 +37,9 @@ export class AutosInfo implements OnInit{
   filterList: ListaInterface[] | any= "";
 
 // Paginación
-  rows:number | undefined = 10;
-  pages:number | undefined = 1
+  rows:number | undefined = 5;
+  pages:number | undefined = 1;
+  page:number | undefined = 1;
 
   listaPrincipal = new Subject();
   listaPrincipal$ = this.listaPrincipal.asObservable()
@@ -64,8 +65,14 @@ export class AutosInfo implements OnInit{
     //return this.autos.find((item:any)=>item.id == id)
   }
 
-  getPagesnRows(){
-    return this.http.get<RespuestaAPI>(this.baseURL+'vehiculos/').subscribe((respuesta)=>{
+  getPagesnRows(filtro?:string, rows?:number, page?:number){
+    let body = new HttpParams();
+    body = filtro? body.set('filtro',filtro) : body;
+    body = rows? body.set('rows', rows) : body;
+    body = page? body.set('page',page) : body
+
+    return this.http.get<RespuestaAPI>(this.baseURL+'vehiculos/', {params: body}).subscribe((respuesta)=>{
+      this.autos = respuesta.data;
       this.rows = respuesta.rows;
       this.pages = respuesta.pages;
     })

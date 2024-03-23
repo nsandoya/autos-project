@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AutosInfo } from '../../services/autos-info.service';
 import { ListaInterface } from '../../interfaces/lista-interface';
 import { SearchInputComponent } from '../search-input/search-input.component';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-tablaPrincipal',
@@ -22,8 +23,10 @@ export class TablaPrincipalComponent /* implements OnInit */ {
   autoEditarContent:any
 
   // Paginación
-  rows:number = 10;
-  pages:number = 1
+  // HAY QUE SUSCRIBIRLAS A SUS ENQUIVALENTES EN EL SERVICIO?
+  rows:any= 0;
+  pages:any = 0
+  page:any = 0
   //stars:any = ""
   // Lo ponemos como 'private' porque así podremos acceder al servicio solo desde nuestro componente
   constructor(private listaService: AutosInfo){
@@ -36,17 +39,27 @@ export class TablaPrincipalComponent /* implements OnInit */ {
   
   // OnInit es un evento (que en este caso se implementa como un método) que se ejecuta cuando carga un componente
   ngOnInit(): void{
+    this.rows = this.listaService.rows
+    this.pages = this.listaService.pages
+    this.page = this.listaService.page
     
-    this.listaService.getCompleteList().subscribe((autos)=>{
+    let body = new HttpParams();
+    body =  body.set('filtro',"");
+    body =  body.set('rows', this.rows);
+    body =  body.set('page',this.page)
+    this.listaService.getCompleteList("", this.rows, this.pages).subscribe((autos)=>{
+
       this.autos = autos;
-      console.log("Autos despues de detail", this.autos)
+      //console.log("Autos despues de detail", this.autos)
+      console.log("Desde tabla, oninit",this.rows, this.page, this.pages)
     })
+
   }
 
   getAllWithParams(){
-    this.listaService.getCompleteList("", this.rows, this.pages).subscribe((autos)=>{
+    // Corregir getPagesNRows
+    this.listaService.getCompleteList("", this.rows, this.pages).subscribe((autos:any)=>{
       this.autos = autos;
-      //this.pages =
     })
   }
 
@@ -59,8 +72,24 @@ export class TablaPrincipalComponent /* implements OnInit */ {
   pagination(pages:number){
     this.listaDePaginas = []
     for(let i=1; i <= pages; i++){
-      this.listaDePaginas.push(1)
+      this.listaDePaginas.push(i)
     }
+  }
+
+  nextPage(){
+    console.log(this.pages)
+    /* if(this.page < this.pages){
+      this.page++
+      this.getAllWithParams()
+    } */
+  }
+  prevPage(){
+    /* if(this.page > this.pages){
+      this.page--
+      this.getAllWithParams()
+    } */
+    console.log(this.pages)
+
   }
   
   toggleImg(){
