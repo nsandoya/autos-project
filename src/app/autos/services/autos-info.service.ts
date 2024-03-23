@@ -84,7 +84,8 @@ export class AutosInfo implements OnInit{
   }
 
   deleteItem(itemID:any){
-     return this.http.delete(this.baseURL+'vehiculo/'+itemID).subscribe(
+    return this.http.delete(this.baseURL+'vehiculo/'+itemID) // Esto de por si es un observable
+     /* return this.http.delete(this.baseURL+'vehiculo/'+itemID).subscribe(
       (response) => {
         console.log("borrado", itemID);
         //this.router.navigate(['/autos/'])
@@ -95,7 +96,7 @@ export class AutosInfo implements OnInit{
       error => {
         console.log("Error al borrar el auto:", error);
       }
-    );
+    ); */
     /* this.autos = this.autos.filter((item:any) => item.id !== itemID)
     this.listaPrincipal.next(this.autos) */
   }
