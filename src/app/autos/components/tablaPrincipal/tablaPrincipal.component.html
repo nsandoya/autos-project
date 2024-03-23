@@ -73,37 +73,40 @@
         </tr>
         
       </tbody>
-      <tfoot>
+      <tfoot class="col-12">
         <tr >
           <td class="">
-            <nav aria-label="page navigation example">
-              <ul class="pagination  text-end  justify-content-end">
-                
-                <li class="page-item">
-                  <a class="page-link" (click)="prevPage()">Previous</a>
-                </li>
-
-                <li *ngFor="let pag of listaDePaginas" class="page-item" [ngClass]="{'active':pag == page}">
-                  <a class="page-link" (click)="cambiarPagina(pag)">{{pag}}</a>
-                </li>
-                
-                <li class="page-item">
-                  <a class="page-link" (click)="nextPage()">Next</a>
-                </li>
-                
-                <!-- <li  *ngFor="let pag of listaDePaginas" class="page-item" [ngClass]="{'active':pag == page}">
-                  <a [(ngModel)]="page" class="page-link" (click)="cambiarPagina(pag)">{{pag}}</a>
-                </li>
-                
-                <li class="page-item">
-                  <a class="page-link" (click)="nextPage()">Next</a>
-                </li> -->
-              </ul>
-            </nav>
+            
           </td>
         </tr>
       </tfoot>
     </table>
+    <div>
+      <nav aria-label="page navigation example">
+        <ul class="pagination  text-center  justify-content-center">
+          
+          <li class="page-item">
+            <a class="page-link" (click)="prevPage()"><i class="bi bi-arrow-left"></i></a>
+          </li>
+
+          <li *ngFor="let pag of listaDePaginas" class="page-item" [ngClass]="{'active':pag == page}">
+            <a class="page-link" (click)="cambiarPagina(pag)">{{pag}}</a>
+          </li>
+          
+          <li class="page-item">
+            <a class="page-link" (click)="nextPage()"><i class="bi bi-arrow-right"></i></a>
+          </li>
+          
+          <!-- <li  *ngFor="let pag of listaDePaginas" class="page-item" [ngClass]="{'active':pag == page}">
+            <a [(ngModel)]="page" class="page-link" (click)="cambiarPagina(pag)">{{pag}}</a>
+          </li>
+          
+          <li class="page-item">
+            <a class="page-link" (click)="nextPage()">Next</a>
+          </li> -->
+        </ul>
+      </nav>
+    </div>
 </div>
 
  

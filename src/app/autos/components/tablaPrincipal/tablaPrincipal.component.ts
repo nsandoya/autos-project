@@ -106,18 +106,21 @@ export class TablaPrincipalComponent /* implements OnInit */ {
   }
 
   nextPage(){
-    console.log(this.pages)
-    /* if(this.page < this.pages){
+    if(this.page < this.pages){
       this.page = this.page + 1
-      this.getAllWithParams()
-    } */
+      this.cambiarPagina(this.page)
+      //this.getAllWithParams()
+    }
+    console.log(this.page)
   }
   prevPage(){
-    /* if(this.page > this.pages){
+    if(this.page > this.pages){
       this.page = this.page - 1
-      this.getAllWithParams()
-    } */
-    console.log(this.pages)
+      this.cambiarPagina(this.page)
+
+      //this.getAllWithParams()
+    }
+    console.log(this.page)
 
   }
   
