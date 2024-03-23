@@ -50,8 +50,8 @@ export class AutosInfo implements OnInit{
     body = rows? body.set('rows', rows) : body;
     body = page? body.set('page',page) : body
 
-
-    return this.listaPrincipal$ = this.http.get<RespuestaAPI>(this.baseURL + 'vehiculos/', {params: body}).pipe(
+    // Aquí estaba el problema
+    return this.http.get<RespuestaAPI>(this.baseURL + 'vehiculos/', {params: body}).pipe(
       map((autos) => autos.data)
     )
     // En caso de que no funcione lo de arriba, dejar esto de acá como activo
@@ -68,7 +68,7 @@ export class AutosInfo implements OnInit{
 
   getItemById(id:any): ListaInterface | any{  // Find retorna el primer resultado que encuentra (y cuando lo encuentra, detiene su recorrido por el arreglo). Como estamos filtrando por ID, está bien así
     //return this.filterList = this.http.get(this.baseURL + 'vehiculo/' +id)
-    return this.listaPrincipal$ = this.http.get<RespuestaAPI>(this.baseURL+'vehiculo/'+id).pipe(map((auto) => auto.data))
+    return this.http.get<RespuestaAPI>(this.baseURL+'vehiculo/'+id).pipe(map((auto) => auto.data))
     //return this.autos.find((item:any)=>item.id == id)
   }
   /* getCarById(id:any): ListaInterface | any{  
