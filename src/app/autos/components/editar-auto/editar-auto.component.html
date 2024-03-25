@@ -4,7 +4,7 @@
     <form [formGroup]="editForm" (onSubmit)="onSubmit()" class="text-start w-75 mx-auto mb-5">
         <div class="mb-3">
           <label for="recipient-name"  class="col-form-label text-start">Código</label>
-          <input type="text" class="form-control disabled"  placeholder="{{auto.codigo}}" id="recipient-name"
+          <input type="text" readonly class="disabled form-control"  placeholder="{{auto.codigo}}" id="recipient-name" style="color: gray;"
           formControlName="codigo"
           [ngClass]="{'is-invalid': editForm.get('codigo')?.invalid && editForm.get('codigo')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
           
@@ -62,9 +62,9 @@
           <textarea class="form-control" placeholder="{{auto.foto}}" id="message-text"
           formControlName="foto"
           [ngClass]="{'is-invalid': editForm.get('foto')?.invalid && editForm.get('foto')?.touched}"></textarea>
-          <div class="alert alert-danger" *ngIf="editForm.get('foto')?.invalid && editForm.get('foto')?.touched">
+          <!-- <div class="alert alert-danger" *ngIf="editForm.get('foto')?.invalid && editForm.get('foto')?.touched">
               Este campo es requerido. Debe tener entre 10 y 50 caractertes
-          </div>
+          </div> -->
         </div>
     
       <div class="modal-footer">
