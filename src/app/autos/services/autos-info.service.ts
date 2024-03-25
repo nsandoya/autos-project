@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { ListaInterface, RespuestaAPI } from '../interfaces/lista-interface';
+import { ListaInterface, RespuestaAPI, RespuestaPUT } from '../interfaces/lista-interface';
 import { BehaviorSubject, Subject, map } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -133,12 +133,16 @@ export class AutosInfo implements OnInit{
     //return this.filterListObservable.asObservable() 
   } */
   editItem(id:string, body:any){
-    return this.http.put(this.baseURL + 'vehiculo/', id,{params: body})/* .subscribe((auto)=>{
-      console.log("Peticion", this.http)
-    }) */
+    return this.http.put<RespuestaPUT>(this.baseURL + 'vehiculo/' + id, body)
+  }
+    /* .subscribe((auto)=>{
+    /* let body = new HttpParams();
+    body = filtro? body.set('filtro',filtro);
+    body = rows? body.set('rows', rows);
+    body = page? body.set('page',page);  */
+      /*  console.log("Peticion", this.http) */
     //return this.http.put(this.baseURL + 'vehiculo/'+ id,{params: body}).subscribe((auto)=>{
       //console.log("Auto actualizado", auto)
-  }
 
   searchItem(searchCr:any){
     console.log("desde la fx", searchCr)

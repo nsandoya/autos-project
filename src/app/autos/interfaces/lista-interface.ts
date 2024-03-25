@@ -17,6 +17,14 @@ export interface ListaInterface {
     calificacion: number
 }
 
+export interface RespuestaPUT{
+  codigo: number;
+  data: string | null;
+  error: string | null;
+  mensaje: string | null;
+  warning: string | null
+}
+
 export interface RespuestaAPI {
     codigo: number;
     mensaje: string;

@@ -5,7 +5,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 
 
 import { AutosInfo } from '../../services/autos-info.service';
-import { ListaInterface } from '../../interfaces/lista-interface';
+import { ListaInterface, RespuestaAPI, RespuestaPUT } from '../../interfaces/lista-interface';
 
 
 @Component({
@@ -15,7 +15,7 @@ import { ListaInterface } from '../../interfaces/lista-interface';
 })
 export class EditarAutoComponent implements OnInit{
   
-  newItemForm: FormGroup = new FormGroup({
+  editForm: FormGroup = new FormGroup({
     /* codigo,
     marca:,
     modelo:,
@@ -29,7 +29,7 @@ export class EditarAutoComponent implements OnInit{
   auto:ListaInterface | any = {}
   
   constructor(private route: ActivatedRoute, private fBuilder: FormBuilder, private listaService: AutosInfo, private router: Router){
-    this.newItemForm = this.fBuilder.group({
+    this.editForm = this.fBuilder.group({
       codigo: ``,
       marca: ``,
       modelo: ``,
@@ -52,7 +52,7 @@ export class EditarAutoComponent implements OnInit{
         
         console.log("Auto a editar",this.auto)
 
-        this.newItemForm = this.fBuilder.group({
+        this.editForm = this.fBuilder.group({
           //Inputs a usar
           codigo: [
             // Valor del input
@@ -140,15 +140,24 @@ export class EditarAutoComponent implements OnInit{
   }
 
   onSubmit(){
-    console.log("click funciona")
-    if(this.newItemForm.invalid){
-      console.log("invalid form")
+    console.log("form value", this.editForm.value)
+    if(this.editForm.invalid){
+      alert("Formulario inválido. Inténtalo nuevamente")
       return
     }
 
     // Mi form value está bien
-    //console.log("Auto 'editado'", this.newItemForm.value)
-    return console.log("Auto editado",this.listaService.editItem(this.auto.id, this.newItemForm.value))
+    //console.log("Auto 'editado'", this.editForm.value)
+    return this.listaService.editItem(this.auto.codigo, this.editForm.value).subscribe((respuesta) => {
+      console.log("Respuesta edicion", respuesta)
+      if(respuesta.codigo==1){
+        alert("Auto editado con éxito")
+        this.router.navigate(['/autos/'+this.editForm.value.codigo])
+        
+      }else{
+        alert("Error. Inténtalo más tarde")
+      }
+    })
   }
 }
 
