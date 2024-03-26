@@ -35,20 +35,28 @@
         Este campo es requerido. Debe tener entre 3 y 20 caractertes
     </div>
 
-    <label for="recipient-name" class="col-form-label text-start">Teléfono</label>
-    <input type="text" class="form-control" id="recipient-name"
-    formControlName="telefono"
-    [ngClass]="{'is-invalid': newUserForm.get('telefono')?.invalid && newUserForm.get('telefono')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
-    <div class="alert alert-danger" *ngIf="newUserForm.get('telefono')?.invalid && newUserForm.get('telefono')?.touched">
-        Este campo es requerido. Debe tener entre 3 y 20 caractertes
+    <div class="grid" style="display: flex; flex-direction: row;">
+      <input type="checkbox" id="checkbox" class="form-check me-2" (click)="checkb()" formControlName="checkbox" >
+      <label for="checkbox">¿Deseas recibir nuestro boletin de noticias?</label>
     </div>
-    
-    <label for="recipient-name" class="col-form-label text-start">Email</label>
-    <input type="text" class="form-control" id="recipient-name"
-    formControlName="email"
-    [ngClass]="{'is-invalid': newUserForm.get('email')?.invalid && newUserForm.get('email')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
-    <div class="alert alert-danger" *ngIf="newUserForm.get('email')?.invalid && newUserForm.get('email')?.touched">
-        Este campo es requerido. Debe tener entre 3 y 20 caractertes
+
+    <div *ngIf="newUserForm.value.checkbox">
+
+      <label for="recipient-name" class="col-form-label text-start">Teléfono</label>
+      <input type="text" class="form-control" id="recipient-name"
+      formControlName="telefono"
+      [ngClass]="{'is-invalid': newUserForm.get('telefono')?.invalid && newUserForm.get('telefono')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+      <div class="alert alert-danger" *ngIf="newUserForm.get('telefono')?.invalid && newUserForm.get('telefono')?.touched">
+          Este campo es requerido. Debe tener entre 3 y 20 caractertes
+      </div>
+      
+      <label for="recipient-name" class="col-form-label text-start">Email</label>
+      <input type="text" class="form-control" id="recipient-name"
+      formControlName="email"
+      [ngClass]="{'is-invalid': newUserForm.get('email')?.invalid && newUserForm.get('email')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+      <div class="alert alert-danger" *ngIf="newUserForm.get('email')?.invalid && newUserForm.get('email')?.touched">
+          Este campo es requerido. Debe tener entre 3 y 20 caractertes
+      </div>
     </div>
 
 

@@ -12,7 +12,9 @@ import { ClienteService } from '../../services/cliente.service';
 })
 export class NuevoUsuarioComponent {
 
-  newUserForm: FormGroup
+  newUserForm: FormGroup;
+  checkbox:boolean = false
+
 
   constructor(private clienteService:ClienteService,private fBuilder: FormBuilder, /* private listaService: AutosInfo */ private router: Router){
     this.newUserForm = fBuilder.group({
@@ -72,16 +74,29 @@ export class NuevoUsuarioComponent {
         [
           Validators.minLength(10),
         ]
-      ]
+      ],
+      checkbox: [false]
 
     });
   }
+
+  checkb(){
+    console.log("checkbox",this.newUserForm.value.checkbox)
+  }
+
   onSubmit(){
     if(this.newUserForm.invalid){
       console.log("Invalido")
       return
     }
     
+    const user = {
+      id : this.newUserForm.value.id,
+      nombre : this.newUserForm.value.nombre,
+      apellido : this.newUserForm.value.apellido,
+      password : this.newUserForm.value.password,
+      email : this.newUserForm.value.email,
+    }
 
     this.clienteService.getClientById(this.newUserForm.value.id).subscribe((cliente:any)=>{
       console.log("Usuario ya existe", cliente.data)

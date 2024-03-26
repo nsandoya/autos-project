@@ -3,7 +3,7 @@
 <form [formGroup]="newLoginForm" (submit)="onSubmit()" class="text-start w-75 mx-auto mb-5">
   <div class="mb-3">
     <label for="recipient-name" class="col-form-label text-start">Usuario</label>
-    <input type="text" class="form-control" id="recipient-name"
+    <input type="text" class="form-control" placeholder="Ingresa tu nombre" id="recipient-name"
     formControlName="nombre"
     [ngClass]="{'is-invalid': newLoginForm.get('nombre')?.invalid && newLoginForm.get('nombre')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
     <div class="alert alert-danger" *ngIf="newLoginForm.get('nombre')?.invalid && newLoginForm.get('nombre')?.touched">
@@ -12,7 +12,7 @@
 
 
     <label for="recipient-name" class="col-form-label text-start">Password</label>
-    <input type="text" class="form-control" id="recipient-name"
+    <input type="text" class="form-control" placeholder="Ingresa tu contraseña (no tan) secreta " id="recipient-name"
     formControlName="password"
     [ngClass]="{'is-invalid': newLoginForm.get('password')?.invalid && newLoginForm.get('password')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
     <div class="alert alert-danger" *ngIf="newLoginForm.get('password')?.invalid && newLoginForm.get('password')?.touched">
@@ -24,7 +24,7 @@
   </div>
 
 <div class="modal-footer">
-  <a [routerLink]="['/']"><button type="button" class="btn btn-secondary mx-3" >Cancelar</button></a> 
+  <a [routerLink]="['/']"><button type="button"  class="btn btn-secondary mx-3" >Cancelar</button></a> 
   <button type="submit" class="btn btn-primary">Guardar</button>
     <!-- Para que funcione, el submit siempre debe estar antes de cerrar la etiqueta <formArrayNameorm> -->
 </div>

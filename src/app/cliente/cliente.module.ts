@@ -16,7 +16,8 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    FormsModule
   ],
   exports: [
     NuevoUsuarioComponent
