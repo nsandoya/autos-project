@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'autos',
-    component: AutosComponent,
+    //component: AutosComponent,
     children: [
       { path: 'all', component: AutosMainPageComponent},
       { path: 'crear', component: AddItemComponent},

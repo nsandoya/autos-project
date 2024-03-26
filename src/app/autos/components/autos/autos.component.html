@@ -1,5 +1,43 @@
-<body class="bg-body">
-    
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+
+<body class="init-body w-75 mx-auto">
+    <div class="div-car my-auto" >
+        <img src="./assets/3d_waves.png" alt="">
+        <h1 class="titulo text-center " >TiB Cars</h1>
+        <a [routerLink]="['usuario']" class=" mx-auto"><button class="btn btn-dark text-center ">Registrarse</button></a>
+
+    </div>
+    <!-- <div style="overflow-y: scroll;">
+        <ul class="d-flex flex-column justify-items-center">
+            <li *ngFor="let item of lista">
+                <a (click)="auto=item">  {{item.modelo}}</a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="div-car">
+        <img src="{{auto.foto}}" class="img-auto mb-5" alt="">
+        <h1 class="titulo text-center " *ngIf="!auto.foto">TiB Cars</h1>
+        <a [routerLink]="['/autos/'+auto.codigo]" class=" mx-auto"><button class="btn btn-dark text-center ">Explorar</button></a>
+    </div> -->
+    <!-- <div style="width: fit-content; margin: 0 auto">
+        <ul class="d-flex flex-row justify-items-center">
+            <li>
+                <a class="mx-3">Stock</a>
+                <span>|</span>
+                
+            </li>
+            <li>
+                <a  class="mx-3">Crear</a>
+                <span>|</span>
+            </li>
+            <li>
+                <a  class="mx-3">Registrarse</a>
+            </li>
+        </ul>
+    </div> -->
 </body>
 
 <router-outlet></router-outlet>
