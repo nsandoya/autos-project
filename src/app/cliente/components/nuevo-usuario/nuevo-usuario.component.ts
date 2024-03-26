@@ -54,6 +54,7 @@ export class NuevoUsuarioComponent {
         '',
         // Validaciones
         [
+          Validators.required,
           Validators.minLength(3),
           Validators.maxLength(12),
         ]
@@ -95,6 +96,7 @@ export class NuevoUsuarioComponent {
       nombre : this.newUserForm.value.nombre,
       apellido : this.newUserForm.value.apellido,
       password : this.newUserForm.value.password,
+      telefono : this.newUserForm.value.telefono,
       email : this.newUserForm.value.email,
     }
 
@@ -108,7 +110,7 @@ export class NuevoUsuarioComponent {
       console.log("Nuevo cliente",this.newUserForm.value)
       return this.clienteService.addClient(this.newUserForm.value).subscribe((respuesta)=>{
         alert("Usuario creado con éxito")
-        this.router.navigate(['/autos/'])
+        this.router.navigate(['/'])
         console.log("Resultado",respuesta)
       })
       /* this.clienteService.addClient(this.newUserForm.value).subscribe((auto:any)=>{
