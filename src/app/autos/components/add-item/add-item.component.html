@@ -31,6 +31,11 @@
     <input type="text" class="form-control" id="recipient-name"
     formControlName="codigo"
     [ngClass]="{'is-invalid': newItemForm.get('codigo')?.invalid && newItemForm.get('codigo')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+    <div class="alert alert-danger" *ngIf="newItemForm.get('codigo')?.invalid && newItemForm.get('codigo')?.touched">
+      Este campo es requerido. Debe tener uan letra y tres números
+    </div>
+
+
     <label for="recipient-name" class="col-form-label text-start">Marca</label>
     <input type="text" class="form-control" id="recipient-name"
     formControlName="marca"

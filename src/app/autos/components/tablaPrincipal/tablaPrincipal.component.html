@@ -5,7 +5,7 @@
   <table  class="table" style="width: 100%;">
       <thead>
         <tr style="font-size: 0.9rem;">
-          <th scope="col" class="text-black-50" >#</th>
+          <th scope="col" class="text-black-50 text-center" >Código</th>
           <th scope="col" class="text-black-50">Marca</th>
           <th scope="col" class="text-black-50">Modelo</th>
           <th scope="col" class="text-black-50">Precio</th>
@@ -37,7 +37,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let auto of autos" class="align-content-center " >
-          <th scope="row" class="text-black-50">{{ auto.codigo }}</th>
+          <th scope="row" class="text-black-50 text-center">{{ auto.codigo }}</th>
           <td class="fs-6 table-text">{{ auto.marca }}</td>
           <td class="fs-6 table-text">{{ auto.modelo }}</td>
           <td class="fs-6 table-text">{{ auto.precio | currency }}</td>
