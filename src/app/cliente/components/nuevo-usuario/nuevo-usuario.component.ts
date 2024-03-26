@@ -92,7 +92,8 @@ export class NuevoUsuarioComponent {
     }, (error:any)=>{
       console.log("Nuevo cliente",this.newUserForm.value)
       return this.clienteService.addClient(this.newUserForm.value).subscribe((respuesta)=>{
-        alert("Usuario registrado con éxito")
+        alert("Usuario creado con éxito")
+        this.router.navigate(['/autos/'])
         console.log("Resultado",respuesta)
       })
       /* this.clienteService.addClient(this.newUserForm.value).subscribe((auto:any)=>{

@@ -54,7 +54,8 @@
             <!-- <a><button class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#editModal"><i class="bi bi-pencil-square "></i></button></a> -->
             <!-- <app-editar-auto></app-editar-auto> -->
             <!-- <a ><button class="btn btn-primary mx-2"><i class="bi bi-pencil-square "></i></button></a> -->
-            <a ><button class="btn btn-primary mx-2" (click)="toggleImg()"><i class="bi bi-app-indicator" ></i></button></a>
+            <a ><button [ngClass]="
+              {'btn-outline-primary':!showImg, 'btn-primary': showImg}" class="btn btn-primary mx-2" (click)="toggleImg()"><i class="bi bi-app-indicator" ></i></button></a>
   
             <a (click)="borrarAuto(auto.codigo)"><button class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="bi bi-x-lg" ></i></button></a>
             <!-- <app-borrar-auto></app-borrar-auto> (click)="nuevoAutoEditar(auto.codigo)" -->

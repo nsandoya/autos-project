@@ -159,6 +159,7 @@ export class TablaPrincipalComponent /* implements OnInit */ {
 
   borrarAuto(id:string){
     return this.listaService.deleteItem(id)
+    
   }
 
  /*  carToDelete(id:string){
