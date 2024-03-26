@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ClienteService } from '../../services/cliente.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -10,41 +11,11 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  newUserForm: FormGroup
+  newLoginForm: FormGroup
 
   constructor(private clienteService:ClienteService,private fBuilder: FormBuilder, /* private listaService: AutosInfo */ private router: Router){
-    this.newUserForm = fBuilder.group({
+    this.newLoginForm = fBuilder.group({
       //Inputs a usar
-      id: [
-        // Valor del input
-        '',
-        // Validaciones
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(4),
-        ]
-      ],
-      nombre: [
-        // Valor del input
-        '',
-        // Validaciones
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(30),
-        ]
-      ],
-      apellido: [
-        // Valor del input
-        '',
-        // Validaciones
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(30),
-        ]
-      ],
       password: [
         // Valor del input
         '',
@@ -54,34 +25,38 @@ export class LoginComponent {
           Validators.maxLength(12),
         ]
       ],
-      telefono: [
+      nombre: [
         // Valor del input
         '',
         // Validaciones
         [
-          Validators.minLength(1),
-          Validators.maxLength(10),
-        ]
-      ],
-      email: [
-        // Valor del input
-        '',
-        // Validaciones
-        [
-          Validators.minLength(10),
+          Validators.minLength(3),
         ]
       ]
 
     });
   }
   onSubmit(){
-    if(this.newUserForm.invalid){
+    if(this.newLoginForm.invalid){
+      alert("Email o Password inválidos. Prueba nuevamente")
       console.log("Invalido")
       return
     }
-    console.log("Nuevo cliente",this.newUserForm.value)
-    return this.clienteService.addClient(this.newUserForm.value).subscribe((respuesta)=>{
-      console.log("Resultado",respuesta)
+    //console.log("Inicio de sesión",this.newLoginForm.value)
+    return this.clienteService.getClientByName(this.newLoginForm.value.nombre).subscribe((respuesta:any)=>{
+      //console.log("Resultado",respuesta[0].nombre)
+      if(respuesta[0] == undefined){
+        console.log(respuesta[0].nombre)
+        alert("Usuario no existe. Inténtalo nuevamente")
+      }else{
+        if(respuesta[0].nombre === this.newLoginForm.value.nombre && respuesta[0].password == this.newLoginForm.value.password){
+          //alert("Login!!!")
+          this.router.navigate(['/autos/'])
+
+        }else{
+          alert("Contraseña incorrecta. Inténtalo nuevamente")
+        }
+      }
     })
   }
 }

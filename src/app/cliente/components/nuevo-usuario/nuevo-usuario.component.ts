@@ -81,24 +81,27 @@ export class NuevoUsuarioComponent {
       console.log("Invalido")
       return
     }
-    console.log("Nuevo cliente",this.newUserForm.value)
-    return this.clienteService.addClient(this.newUserForm.value).subscribe((respuesta)=>{
-      console.log("Resultado",respuesta)
-    })
+    
 
-    /* this.listaService.getItemById(this.newUserForm.value.codigo).subscribe((auto:any)=>{
-      if(this.newUserForm.value.codigo == auto.codigo){
-        alert("Código ya existe. Intenta con uno nuevo")
-        return
-      }
+    this.clienteService.getClientById(this.newUserForm.value.id).subscribe((cliente:any)=>{
+      console.log("Usuario ya existe", cliente.data)
+      alert("Este ID de usuario ya existe. Intenta con uno nuevo")
+      /* if(this.newUserForm.value.id == cliente.data.id){
+        //return
+      } */
     }, (error:any)=>{
-      this.listaService.addItem(this.newUserForm.value).subscribe((auto:any)=>{
+      console.log("Nuevo cliente",this.newUserForm.value)
+      return this.clienteService.addClient(this.newUserForm.value).subscribe((respuesta)=>{
+        alert("Usuario registrado con éxito")
+        console.log("Resultado",respuesta)
+      })
+      /* this.clienteService.addClient(this.newUserForm.value).subscribe((auto:any)=>{
           console.log("Nuevo auto",auto)
-          this.listaService.getCompleteList().subscribe((autos)=>{
-            this.router.navigate(['/autos/'+this.newUserForm.value.codigo])
+          this.clienteService.getAllClients().subscribe((cliente)=>{
+            this.router.navigate(['/autos/'])
           })
-        })    
+        })     */
 
-    }) */
+    })
   }
 }

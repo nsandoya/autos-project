@@ -49,9 +49,21 @@ ul{
     grid-template-columns: 1fr;
     grid-template-rows: 2fr;
     gap: 1rem;
+
+    div{
+        margin-inline: auto;
+
+        
+    }
+    button{
+        margin-inline: 1.5rem;
+        width: 150px;
+        border-radius: 15px;
+    }
     img{
         width: 120%;
-        margin-left: -50rem;
+        margin-left: -80rem;
+        margin-bottom: 10rem;
         /* height: 100%; */
         justify-self: center;
         border-radius: 15px;

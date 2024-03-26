@@ -1,5 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
+import { ClientesInterface } from '../interfaces/clientes-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +12,27 @@ export class ClienteService {
   constructor(private http:HttpClient) { }
 
   getAllClients(){
+    /* let body = new HttpParams();
+    body = filtro? body.set('filtro',filtro) : body;
+    body = rows? body.set('rows', rows) : body;
+    body = page? body.set('page',page) : body */
+    
     return this.http.get(this.baseUrl + 'cliente/')
   }
 
-  getClientById(clienteId:string){
+  getClientById(clienteId:any){
     let body = new HttpParams();
     body = clienteId? body.set('id',clienteId) : body;
 
-    return this.http.get(this.baseUrl + 'cliente/', {params: body})
+    return this.http.get(this.baseUrl + 'cliente/' + clienteId)
+  }
+  getClientByName(name:any){
+    /* let body = new HttpParams();
+    body = name? body.set('filtro',name) : body;
+    body = rows? body.set('rows', rows) : body;
+    body = page? body.set('page',page) : body  */
+
+    return this.http.get<ClientesInterface>(`http://epico.gob.ec/vehiculo/public/api/clientes/?filtro=${name}`).pipe(map((respuesta) => respuesta.data))
   }
 
   addClient(cliente:any){

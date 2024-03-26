@@ -9,6 +9,7 @@ import { AutosComponent } from './autos/components/autos/autos.component';
 import { EditarAutoComponent } from './autos/components/editar-auto/editar-auto.component';
 import { AddItemComponent } from './autos/components/add-item/add-item.component';
 import { NuevoUsuarioComponent } from './cliente/components/nuevo-usuario/nuevo-usuario.component';
+import { LoginComponent } from './cliente/components/login/login.component';
 
 const routes: Routes = [
   {
@@ -31,8 +32,12 @@ const routes: Routes = [
     component: AutoDetailPageComponent
   },
   {
-    path: 'registro/cliente',
+    path: 'cliente/registro',
     component: NuevoUsuarioComponent
+  },
+  {
+    path: 'cliente/login',
+    component: LoginComponent
   },
   
   {
