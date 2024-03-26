@@ -5,13 +5,14 @@
     border-radius: 8px;
 }
 
-/* *{
-    font-family: "Poppins", sans-serif !important;
-} */
 *{
     font-family: "Roboto", sans-serif !important;
 }
 
 .light-text-table{
     color: #24272b !important;
+}
+
+.table-text{
+    color: #302f2f;
 }

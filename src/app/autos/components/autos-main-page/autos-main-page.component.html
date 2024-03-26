@@ -1,16 +1,22 @@
 <div class="container-fluid">
-    <div class="row">
-        <h2 class="my-3">Stock de Automóviles</h2>
+    <div class="row mb-4" style="width: 100%;">
+        <h2 class=" ms-4 table-text col-4 align-self-end">Stock de Automóviles</h2>
+        <div class="col-5 ms-auto me-1">
+            <div class="row justify-content-end py-3" style="border-radius: 10px; background-color: #f5f4f3;">
+                <div class="col-7 text-end align-self-center">
+                    <app-search-input></app-search-input>
+                </div>
+                <div class="col-2 text-end me-4">
+                    <a [routerLink]="['/autos/crear']"><button class="btn btn-primary align-self-center py-2" style="width: 80px;font-size: 0.92rem;"><i class="bi bi-plus-lg" ></i> Crear</button></a>
+                    <!-- <app-add-item></app-add-item> -->
+                </div>
 
-        <div class="col-4 mb-3">
-            <app-search-input></app-search-input>
-        </div>
-        <div class="col-6 text-end">
-            <a [routerLink]="['/autos/crear']"><button class="btn btn-primary "><i class="bi bi-plus-lg"></i> Crear</button></a>
-            <!-- <app-add-item></app-add-item> -->
+            </div>
+
         </div>
     </div>
 </div>
 
-
-<app-tablaPrincipal></app-tablaPrincipal>
+<div class="">
+    <app-tablaPrincipal></app-tablaPrincipal>
+</div>

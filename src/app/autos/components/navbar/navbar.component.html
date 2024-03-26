@@ -1,11 +1,14 @@
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">TiB Cars</a>
+<nav class="navbar navbar-expand-md bg-light row ms-3">
+    <a [routerLink]="['/']" class="navbar-brand col-1 ">
+      <img src="./assets/icon_tib.png" style="width: 50px;">
+    </a>
+    <div class="container-fluid col-10 justify-content-end">
+      <!-- <a class="navbar-brand" href="#">TiB Cars</a> -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav col justify-content-end mb-2 mb-lg-0">
            <li class="nav-item">
             <a  [routerLink]="['/']" class="nav-link" routerLinkActive="text-primary" [routerLinkActiveOptions]="{exact: true}" aria-current="page" >Inicio</a>
           </li>
