@@ -8,7 +8,9 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AutosModule } from './autos/autos.module';
+import { ClienteModule } from './cliente/cliente.module';
 import { InterceptorService } from './autos/services/interceptor.service';
+
 
 
 @NgModule({
@@ -19,6 +21,7 @@ import { InterceptorService } from './autos/services/interceptor.service';
   imports: [
     HttpClientModule,
     AutosModule,
+    ClienteModule,
     BrowserModule,
     FormsModule,
     RouterModule,

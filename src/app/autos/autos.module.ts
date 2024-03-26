@@ -15,7 +15,6 @@ import { EditarAutoComponent } from './components/editar-auto/editar-auto.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { BorrarAutoComponent } from './components/borrar-auto/borrar-auto.component';
-/* import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; */
 
 
 @NgModule({
@@ -31,6 +30,7 @@ import { BorrarAutoComponent } from './components/borrar-auto/borrar-auto.compon
     EditarAutoComponent,
     BorrarAutoComponent,
     AutosComponent,
+
   ],
   imports: [
     CommonModule,
@@ -51,7 +51,8 @@ import { BorrarAutoComponent } from './components/borrar-auto/borrar-auto.compon
     AutosComponent,
 /*     NuevoAutoComponent, */
     EditarAutoComponent, 
-    BorrarAutoComponent
+    BorrarAutoComponent,
+
   ]
 
 })
