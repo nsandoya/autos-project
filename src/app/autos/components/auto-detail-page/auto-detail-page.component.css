@@ -13,3 +13,29 @@
     width: 70%;
     margin: 0 auto
 }
+
+.nav-car{
+    width:97% !important;
+    background-color: rgb(243, 242, 238);
+
+    border-radius: 15px;
+
+    li a:hover{
+        color: #007bff !important;
+        cursor: pointer;
+    }
+}
+
+.overview{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.body-detail{
+    display: grid;
+    height: 75vh;
+    max-height: 100vh;
+}
+.bdetail-content{
+    margin: auto 0;
+}

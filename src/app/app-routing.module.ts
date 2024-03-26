@@ -31,6 +31,10 @@ const routes: Routes = [
   },
   
   {
+    path: '',
+    component: AutosComponent
+  },
+  {
     path: '**',
     component: ErrorPageComponent
   },

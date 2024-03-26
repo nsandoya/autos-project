@@ -1,33 +1,24 @@
-<!-- <div class="card mb-3 cont" *ngIf="auto">
-    <img src="{{auto.foto}}" class="card-img-top" style="height: 500px;max-height: 500px; object-fit: cover;" alt="...">
-    <div class="card-body">
-      <h4 class="card-title text-center display-5">{{auto.modelo}}</h4>
-      <p class="card-text">...</p>
-      <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-      
-      <div class="container-fluid text-center">
-        <a href=""><button class="btn btn-primary">Vender</button></a>
-      </div>  
-    </div>
-</div> -->
-<div *ngIf="auto" class="card text-center" >
-  <div class="card-header">
-    <ul class="nav nav-tabs card-header-tabs">
+
+<div *ngIf="auto" class="text-center" >
+  <div class="">
+    <ul class="nav nav-car mx-auto py-2">
       <li class="nav-item col-1">
-        <a class="nav-link active text-primary" aria-current="true" (click)="activeTab=main" [ngClass]="
-          {'active text-primary':activeTab==main, 'text-primary':activeTab==main, 'text-black-50':activeTab!=main}">Overview</a>
+        <a class="nav-link " aria-current="true" 
+        (click)="activeTab = main" [ngClass]="
+          {'text-primary':activeTab===main, 'text-black-50':activeTab!=main}">Overview</a>
       </li>
       <li class="nav-item col-1">
-        <a class="nav-link text-black-50" (click)="activeTab=detail1" [ngClass]="{'active':activeTab==detail1, 'text-primary':activeTab==detail1}" >Detalles</a>
+        <a class="nav-link " (click)="activeTab=detail1" [ngClass]="{'text-primary':activeTab===detail1, 'text-black-50':activeTab!=detail1}" >Detalles</a>
       </li>
-      <li class="nav-item col-2 active text-start">
-        <a class="nav-link text-black-50" (click)="activeTab=detail2" [ngClass]="{'active':activeTab==detail2, 'text-primary':activeTab==detail2}">Agendar prueba</a>
+      <li class="nav-item col-2 text-start">
+        <a class="nav-link " (click)="activeTab=detail2" [ngClass]="{'active':activeTab==detail2, 'text-primary':activeTab==detail2, 'text-black-50':activeTab!=detail2}">Agendar prueba</a>
       </li>
-      <div class="col-8 text-end">
-        <a [routerLink]="['/autos/editar/' + auto.codigo]"><button class="btn btn-primary mx-2"><i class="bi bi-pencil-square "></i> Editar</button></a>
-        
+      <div class="col-8 text-end pe-3" >
+        <a [routerLink]="['/autos/editar/' + auto.codigo]"><button class="btn btn-primary mx-2 "><i class="bi bi-pencil-square "></i> Editar</button></a>
       </div>
+      <!-- <hr class="w-50" style="margin-left:0.5rem"> -->
     </ul>
+
   </div>
   <ng-container class="card-body" [ngTemplateOutlet]="activeTab">
     
@@ -37,42 +28,64 @@
 <!-- Ng templates -->
 <!-- 1 -->
 <ng-template #main>
-  <div class="card text-center ">
-    <span class="text-black-50 mt-1">{{auto.marca}}</span>
-    <h2 class="card-title my-2">{{  auto.modelo }}</h2>
-    <img src="{{auto.foto}}" class="card-img-top mx-auto my-3" style="width:auto;height: auto;max-height: 400px; object-fit: cover;" alt="...">
-    <span class="w-100">
-      <i *ngFor="let star of generateStars(auto.calificacion)" class="bi bi-star-fill mx-1" style="color: #007bff;"></i>
-    </span>
-    <p class="card-text w-50 my-3" style="margin: 0 auto">Aerodinámico, veloz, y del tamaño de tu bolsillo. Un auto pensado para perdurar en tus recuerdos en forma de experiencias únicas</p>
-    <a class="btn btn-primary disabled mb-3" style="width: 100px;margin: 0 auto">Comprar</a>
+  <div class="text-start overview mt-3">
+    <img src="{{auto.foto}}" class="card-img-top mx-auto my-2" style="width:auto;height: auto;max-height: 400px; object-fit: cover;" alt="...">
+    <div class="w-75 my-auto">
+      <span class="w-100">
+      <span class="text-black-50 mt-1">{{auto.marca}}</span>
+      <h2 class=" my-2">{{  auto.modelo }}</h2>
+        <i *ngFor="let star of generateStars(auto.calificacion)" class="bi bi-star-fill mx-1" style="color: #007bff;"></i>
+      </span>
+      <p class="card-text my-3" style="margin: 0 auto">Aerodinámico, veloz, y del tamaño de tu bolsillo. Un auto pensado para perdurar en tus recuerdos en forma de experiencias únicas</p>
+      <a class="btn btn-primary disabled my-3" style="width: 100px;margin: 0 auto">Comprar</a>
+
+    </div>
   </div>
 </ng-template>
 <!-- 2 -->
 <ng-template #detail1>
-  <div class="card">
-    <div class="card-header">
-      <span class="text-black-50">{{ auto.marca }}</span>
-      {{ auto.modelo }}
-    </div>
-    <div class="card-body">
-      <blockquote class="blockquote mb-0">
+  <div class="body-detail">
+    <div class="bdetail-content">
+      <div class="my-3">
+        <span class="text-black-50">{{ auto.marca }}</span>
+        {{ auto.modelo }}
+      </div>
+      <div class="fs-5">
         <span class="text-black-50">Precio (incluye IVA)</span>
         <p class="mb-0">{{ auto.precio | currency }}</p>
-        <hr>
+        <hr class="w-25 mx-auto">
         <span class="text-black-50">Año de lanzamiento</span>
         <p class="mb-0">{{ auto.anio }}</p>
-        <hr>
+        <hr class="w-25 mx-auto">
         <span class="text-black-50">KM</span>
         <p class="mb-0">{{ auto.kilometraje }}</p>
-        <hr>
-      </blockquote>
+        
+        <!-- <blockquote class="blockquote mb-0">
+        </blockquote> -->
+      </div>
     </div>
   </div>
 </ng-template>
 <!-- 3 -->
 <ng-template #detail2>
-  <div class="card">
+  <div class="body-detail">
+    <div class="bdetail-content">
+      <div class="my-3">
+        <span class="text-black-50">{{ auto.marca }}</span>
+        {{ auto.modelo }}
+      </div>
+      <div class="fs-5">
+        <span class="text-black-50">Agente de Ventas</span>
+        <p class="mb-0">{{ auto.usuario }}</p>
+        <hr class="w-25 mx-auto">
+        <button class="btn btn-primary disabled">Agendar</button>
+        
+        <!-- <blockquote class="blockquote mb-0">
+        </blockquote> -->
+      </div>
+    </div>
+  </div>
+  <!-- <div class="card">
     <div class="card-header">
       
     </div>
@@ -88,12 +101,12 @@
       </blockquote>
       
     </div>
-  </div>
+  </div> -->
 </ng-template>
 
 <!-- Mensaje de error -->
-<div class="container-fluid justify-content-center text-center" style="margin: auto 0" *ngIf="!auto">
-  <div class="spinner-border align-self-center" style="width: 3rem; height: 3rem; " role="status">
+<div class="container-fluid d-grid justify-content-center align-content-center text-center h-100" *ngIf="!auto">
+  <div class="spinner-border align-self-center my-auto" style="width: 3rem; height: 3rem; " role="status">
   </div>
 </div>
 <!-- <span class="fs-3">Cargando...</span> -->

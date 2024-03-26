@@ -1,0 +1,8 @@
+.c-text{
+    height:100vh !important;
+    max-height: 100vh !important;
+}
+
+*{
+    font-family: "Roboto", sans-serif;
+}
