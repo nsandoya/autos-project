@@ -83,11 +83,11 @@
   <div class="mb-3">
     <label for="message-text" class="col-form-label text-start">Foto (URL)</label>
     <textarea class="form-control" id="message-text"
-    formControlName="foto"
-    [ngClass]="{'is-invalid': newItemForm.get('foto')?.invalid && newItemForm.get('foto')?.touched}"></textarea>
-    <div class="alert alert-danger" *ngIf="newItemForm.get('foto')?.invalid && newItemForm.get('foto')?.touched">
+    formControlName="foto"></textarea>
+    <!-- [ngClass]="{'is-invalid': newItemForm.get('foto')?.invalid && newItemForm.get('foto')?.touched}" -->
+    <!-- <div class="alert alert-danger" *ngIf="newItemForm.get('foto')?.invalid && newItemForm.get('foto')?.touched">
         Este campo es requerido. Debe tener entre 10 y 50 caractertes
-    </div>
+    </div> -->
   </div>
 <div class="modal-footer">
   <a [routerLink]="['/autos']"><button type="button" class="btn btn-secondary mx-3" >Cancelar</button></a> 

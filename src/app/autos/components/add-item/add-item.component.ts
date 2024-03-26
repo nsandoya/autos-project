@@ -20,7 +20,7 @@ export class AddItemComponent {
         // Validaciones
         [
           Validators.required,
-          Validators.minLength(3),
+          Validators.minLength(4),
           Validators.maxLength(6),
         ]
       ],
@@ -80,11 +80,11 @@ export class AddItemComponent {
       ],
       foto: [
         '',
-        [
+        /* [
           Validators.required,
           Validators.minLength(10),
           Validators.maxLength(450),
-        ]
+        ] */
       ],
 
     });
@@ -95,12 +95,20 @@ export class AddItemComponent {
       return
     }
     console.log("Nuevo auto",this.newItemForm.value)
-    this.listaService.addItem(this.newItemForm.value).subscribe((auto:any)=>{
-      console.log("Nuevo auto",auto)
-      
-    })
-    this.listaService.getCompleteList().subscribe((autos)=>{
-      this.router.navigate(['/autos/'+this.newItemForm.value.codigo])
+
+    this.listaService.getItemById(this.newItemForm.value.codigo).subscribe((auto:any)=>{
+      if(this.newItemForm.value.codigo == auto.codigo){
+        alert("Código ya existe. Intenta con uno nuevo")
+        return
+      }
+    }, (error:any)=>{
+      this.listaService.addItem(this.newItemForm.value).subscribe((auto:any)=>{
+          console.log("Nuevo auto",auto)
+          this.listaService.getCompleteList().subscribe((autos)=>{
+            this.router.navigate(['/autos/'+this.newItemForm.value.codigo])
+          })
+        })    
+
     })
   }
     /* this.listaService.addItem({
