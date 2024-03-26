@@ -100,15 +100,16 @@ export class NuevoUsuarioComponent {
       email : this.newUserForm.value.email,
     }
 
-    this.clienteService.getClientById(this.newUserForm.value.id).subscribe((cliente:any)=>{
+    //this.newUserForm.value.id
+    this.clienteService.getClientById(user.id).subscribe((cliente:any)=>{
       console.log("Usuario ya existe", cliente.data)
       alert("Este ID de usuario ya existe. Intenta con uno nuevo")
       /* if(this.newUserForm.value.id == cliente.data.id){
         //return
       } */
     }, (error:any)=>{
-      console.log("Nuevo cliente",this.newUserForm.value)
-      return this.clienteService.addClient(this.newUserForm.value).subscribe((respuesta)=>{
+      console.log("Nuevo cliente",user)
+      return this.clienteService.addClient(user).subscribe((respuesta)=>{
         alert("Usuario creado con éxito")
         this.router.navigate(['/'])
         console.log("Resultado",respuesta)

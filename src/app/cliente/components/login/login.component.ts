@@ -54,7 +54,7 @@ export class LoginComponent {
           this.router.navigate(['/autos/'])
 
         }else{
-          alert("Contraseña incorrecta. Inténtalo nuevamente")
+          alert("🐛 Tus credenciales no son válidas. Inténtalo nuevamente")
         }
       }
     })
