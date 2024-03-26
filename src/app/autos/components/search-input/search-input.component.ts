@@ -18,18 +18,16 @@ export class SearchInputComponent {
   ngOnInit(){
   }
   
- /*  searchItem(){
-    //this.listaService.searchItem(this.searchCr)
-    //this.listaService.getItemById(this.searchCr)
-  } */
   searchItem(){
     this.listaService.getCompleteList(this.searchCr).subscribe((autos)=>{
       this.autos = autos
-      this.listaService.refreshList(this.autos)
-      /* console.log("Búsqueda 2.0",...this.autos)
-      console.log("Refresh",this.listaService.refreshList(this.autos)) */
-      
+      this.listaService.refreshList(this.autos)      
     })
+    /* this.listaService.getPagesnRows("", this.listaService.rows, 1).subscribe((respuesta)=>{
+      this.autos = respuesta.data;
+      this.listaService.rows = respuesta.rows;
+      this.listaService.pages = respuesta.pages;
+    }) */
   }
 
   returnAllItems(){
