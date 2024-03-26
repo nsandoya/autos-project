@@ -1,0 +1,62 @@
+<h2 class="w-75 mx-auto mb-4 col-4 align-self-center">Crear/Nuevo Usuario</h2>
+
+<form [formGroup]="newUserForm" (submit)="onSubmit()" class="text-start w-75 mx-auto mb-5">
+  <div class="mb-3">
+    <label for="recipient-name" class="col-form-label text-start">ID</label>
+    <input type="text" class="form-control" id="recipient-name"
+    formControlName="id"
+    [ngClass]="{'is-invalid': newUserForm.get('id')?.invalid && newUserForm.get('id')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+    <div class="alert alert-danger" *ngIf="newUserForm.get('id')?.invalid && newUserForm.get('id')?.touched">
+      Este campo es requerido. Debe tener uan letra y tres números
+    </div>
+
+
+    <label for="recipient-name" class="col-form-label text-start">Nombre</label>
+    <input type="text" class="form-control" id="recipient-name"
+    formControlName="nombre"
+    [ngClass]="{'is-invalid': newUserForm.get('nombre')?.invalid && newUserForm.get('nombre')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+    <div class="alert alert-danger" *ngIf="newUserForm.get('nombre')?.invalid && newUserForm.get('nombre')?.touched">
+        Este campo es requerido. Debe tener entre 3 y 20 caractertes
+    </div>
+
+    <label for="recipient-name" class="col-form-label text-start">Apellido</label>
+    <input type="text" class="form-control" id="recipient-name"
+    formControlName="apellido"
+    [ngClass]="{'is-invalid': newUserForm.get('apellido')?.invalid && newUserForm.get('apellido')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+    <div class="alert alert-danger" *ngIf="newUserForm.get('apellido')?.invalid && newUserForm.get('apellido')?.touched">
+        Este campo es requerido. Debe tener entre 3 y 20 caractertes
+    </div>
+
+    <label for="recipient-name" class="col-form-label text-start">Password</label>
+    <input type="text" class="form-control" id="recipient-name"
+    formControlName="password"
+    [ngClass]="{'is-invalid': newUserForm.get('password')?.invalid && newUserForm.get('password')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+    <div class="alert alert-danger" *ngIf="newUserForm.get('password')?.invalid && newUserForm.get('password')?.touched">
+        Este campo es requerido. Debe tener entre 3 y 20 caractertes
+    </div>
+
+    <label for="recipient-name" class="col-form-label text-start">Teléfono</label>
+    <input type="text" class="form-control" id="recipient-name"
+    formControlName="telefono"
+    [ngClass]="{'is-invalid': newUserForm.get('telefono')?.invalid && newUserForm.get('telefono')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+    <div class="alert alert-danger" *ngIf="newUserForm.get('telefono')?.invalid && newUserForm.get('telefono')?.touched">
+        Este campo es requerido. Debe tener entre 3 y 20 caractertes
+    </div>
+    
+    <label for="recipient-name" class="col-form-label text-start">Email</label>
+    <input type="text" class="form-control" id="recipient-name"
+    formControlName="email"
+    [ngClass]="{'is-invalid': newUserForm.get('email')?.invalid && newUserForm.get('email')?.touched}"> <!-- esto relaciona el input con los atributos creados en el formGroup -->
+    <div class="alert alert-danger" *ngIf="newUserForm.get('email')?.invalid && newUserForm.get('email')?.touched">
+        Este campo es requerido. Debe tener entre 3 y 20 caractertes
+    </div>
+
+
+  </div>
+
+<div class="modal-footer">
+  <a [routerLink]="['/']"><button type="button" class="btn btn-secondary mx-3" >Cancelar</button></a> 
+  <button type="submit" class="btn btn-primary">Guardar</button>
+    <!-- Para que funcione, el submit siempre debe estar antes de cerrar la etiqueta <formArrayNameorm> -->
+</div>
+</form>

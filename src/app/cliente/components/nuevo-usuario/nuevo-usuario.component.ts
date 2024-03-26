@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-//import { AutosInfo } from '../../autos/services/autos-info.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AutosInfo } from '../../../autos/services/autos-info.service';
+import { ClienteService } from '../../services/cliente.service';
 
 @Component({
   selector: 'app-nuevo-usuario',
@@ -10,10 +12,10 @@ import { Router } from '@angular/router';
 })
 export class NuevoUsuarioComponent {
 
-  newItemForm: FormGroup
+  newUserForm: FormGroup
 
-  constructor(private fBuilder: FormBuilder, /* private listaService: AutosInfo */ private router: Router){
-    this.newItemForm = fBuilder.group({
+  constructor(private clienteService:ClienteService,private fBuilder: FormBuilder, /* private listaService: AutosInfo */ private router: Router){
+    this.newUserForm = fBuilder.group({
       //Inputs a usar
       id: [
         // Valor del input
@@ -21,8 +23,8 @@ export class NuevoUsuarioComponent {
         // Validaciones
         [
           Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(6),
+          Validators.minLength(3),
+          Validators.maxLength(4),
         ]
       ],
       nombre: [
@@ -50,8 +52,8 @@ export class NuevoUsuarioComponent {
         '',
         // Validaciones
         [
-          Validators.minLength(4),
-          Validators.maxLength(4),
+          Validators.minLength(3),
+          Validators.maxLength(12),
         ]
       ],
       telefono: [
@@ -60,6 +62,7 @@ export class NuevoUsuarioComponent {
         // Validaciones
         [
           Validators.minLength(1),
+          Validators.maxLength(10),
         ]
       ],
       email: [
@@ -67,37 +70,32 @@ export class NuevoUsuarioComponent {
         '',
         // Validaciones
         [
-          Validators.minLength(1),
-        ]
-      ],
-      foto: [
-        '',
-        /* [
-          Validators.required,
           Validators.minLength(10),
-          Validators.maxLength(450),
-        ] */
-      ],
+        ]
+      ]
 
     });
   }
   onSubmit(){
-    if(this.newItemForm.invalid){
+    if(this.newUserForm.invalid){
       console.log("Invalido")
       return
     }
-    console.log("Nuevo auto",this.newItemForm.value)
+    console.log("Nuevo cliente",this.newUserForm.value)
+    return this.clienteService.addClient(this.newUserForm.value).subscribe((respuesta)=>{
+      console.log("Resultado",respuesta)
+    })
 
-    /* this.listaService.getItemById(this.newItemForm.value.codigo).subscribe((auto:any)=>{
-      if(this.newItemForm.value.codigo == auto.codigo){
+    /* this.listaService.getItemById(this.newUserForm.value.codigo).subscribe((auto:any)=>{
+      if(this.newUserForm.value.codigo == auto.codigo){
         alert("Código ya existe. Intenta con uno nuevo")
         return
       }
     }, (error:any)=>{
-      this.listaService.addItem(this.newItemForm.value).subscribe((auto:any)=>{
+      this.listaService.addItem(this.newUserForm.value).subscribe((auto:any)=>{
           console.log("Nuevo auto",auto)
           this.listaService.getCompleteList().subscribe((autos)=>{
-            this.router.navigate(['/autos/'+this.newItemForm.value.codigo])
+            this.router.navigate(['/autos/'+this.newUserForm.value.codigo])
           })
         })    
 

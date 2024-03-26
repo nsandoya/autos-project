@@ -8,7 +8,7 @@ import { AutosComponent } from './autos/components/autos/autos.component';
 /* import { NuevoAutoComponent } from './autos/components/nuevo-auto/nuevo-auto.component'; */
 import { EditarAutoComponent } from './autos/components/editar-auto/editar-auto.component';
 import { AddItemComponent } from './autos/components/add-item/add-item.component';
-import { NuevoUsuarioComponent } from './cliente/nuevo-usuario/nuevo-usuario.component';
+import { NuevoUsuarioComponent } from './cliente/components/nuevo-usuario/nuevo-usuario.component';
 
 const routes: Routes = [
   {
